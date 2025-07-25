@@ -143,7 +143,7 @@
   },
   {
     "title": "Business Card",
-    "id": "businesscards",
+    "id": "businesscard",
     "fields": [
       {
         "component": "title",
