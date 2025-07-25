@@ -1,0 +1,114 @@
+/* stylelint-disable */
+.businesscard {
+  display: flex;
+  background: #fff;
+  align-items: stretch;
+  max-height: 350px;
+}
+
+.businesscard.align-right {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.businesscard.align-right .businesscard-img-col {
+  display: flex;
+  flex-direction: row-reverse;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.businesscard.bg-secondary {
+  background: #eee;
+  color: #000;
+}
+
+.businesscard.bg-secondary a:any-link.businesscard-link {
+  background-color: #fff;
+  color:#000;
+}
+
+.businesscard.bg-secondary > div:not(.businesscard-img-col) {
+  color: #000;
+}
+
+.businesscard-img-col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex: 1;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.businesscard-img-col img {
+  height: 100%;
+  width: auto;
+}
+
+.businesscard > div:not(.businesscard-img-col) {
+  color: #000;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1em;
+}
+
+.businesscard > div:not(.businesscard-img-col) > div {
+  box-sizing: border-box;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.businesscard > div:not(.businesscard-img-col) h3 {
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0.96px;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.businesscard > div:not(.businesscard-img-col) h3 a {
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  font-style: inherit;
+  letter-spacing: inherit;
+}
+
+.businesscard > div:not(.businesscard-img-col) p {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0.56px;
+  margin: 0;
+}
+
+.businesscard a:any-link.businesscard-link {
+  background-color: #fff;
+  display: inline-block;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+@media (width <= 900px) {
+  .businesscard {
+    flex-direction: column-reverse;
+    max-height: 568px;
+  }
+  .businesscard .businesscard-img-col {
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+  }
+  .businesscard .businesscard > div:not(.businesscard-img-col) > div {
+    text-align: center;
+    padding: 5rem 7rem;
+  }
+}
