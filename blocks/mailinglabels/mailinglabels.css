@@ -1,0 +1,114 @@
+/* stylelint-disable */
+.mailinglabels {
+  display: flex;
+  background: #fff;
+  align-items: stretch;
+  max-height: 350px;
+}
+
+.mailinglabels.align-right {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.mailinglabels.align-right .mailinglabels-img-col {
+  display: flex;
+  flex-direction: row-reverse;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.mailinglabels.bg-secondary {
+  background: #eee;
+  color: #000;
+}
+
+.mailinglabels.bg-secondary a:any-link.mailinglabels-link {
+  background-color: #fff;
+  color:#000;
+}
+
+.mailinglabels.bg-secondary > div:not(.mailinglabels-img-col) {
+  color: #000;
+}
+
+.mailinglabels-img-col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex: 1;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.mailinglabels-img-col img {
+  height: 100%;
+  width: auto;
+}
+
+.mailinglabels > div:not(.mailinglabels-img-col) {
+  color: #000;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1em;
+}
+
+.mailinglabels > div:not(.mailinglabels-img-col) > div {
+  box-sizing: border-box;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mailinglabels > div:not(.mailinglabels-img-col) h3 {
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0.96px;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.mailinglabels > div:not(.mailinglabels-img-col) h3 a {
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  font-style: inherit;
+  letter-spacing: inherit;
+}
+
+.mailinglabels > div:not(.mailinglabels-img-col) p {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0.56px;
+  margin: 0;
+}
+
+.mailinglabels a:any-link.mailinglabels-link {
+  background-color: #fff;
+  display: inline-block;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+@media (width <= 900px) {
+  .mailinglabels {
+    flex-direction: column-reverse;
+    max-height: 568px;
+  }
+  .mailinglabels .mailinglabels-img-col {
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+  }
+  .mailinglabels .mailinglabels > div:not(.mailinglabels-img-col) > div {
+    text-align: center;
+    padding: 5rem 7rem;
+  }
+}
