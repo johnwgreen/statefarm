@@ -10,7 +10,7 @@
               "name": "Mailing Labels",
             "id": "mailinglabels",
               "model": "",
-              "textContent_text": "<h2>Enter a title</h2><p>...and body text here!</p>",
+              "textContent_text": "<h2>Enter a title</h2><p>...and body text here!</p>"
             }
           }
         }
