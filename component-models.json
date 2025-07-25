@@ -142,6 +142,19 @@
     ]
   },
   {
+    "title": "Business Card",
+    "id": "businesscards",
+    "fields": [
+      {
+        "component": "title",
+        "valueType": "string",
+        "name": "title",
+        "label": "Title",
+        "multi": false
+      }
+    ]
+  },
+  {
     "id": "card",
     "fields": [
       {
@@ -212,6 +225,19 @@
         "value": "",
         "label": "Text",
         "valueType": "string"
+      }
+    ]
+  },
+  {
+    "title": "Mailing Labels",
+    "id": "mailinglabels",
+    "fields": [
+      {
+        "component": "title",
+        "valueType": "string",
+        "name": "title",
+        "label": "Title",
+        "multi": false
       }
     ]
   },

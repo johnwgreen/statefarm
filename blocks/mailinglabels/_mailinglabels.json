@@ -1,0 +1,49 @@
+{
+     "definitions": [{
+      "title": "Mailing Labels",
+      "id": "mailinglabels",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "Mailing Labels",
+            "id": "mailinglabels",
+              "model": "",
+              "textContent_text": "<h2>Enter a title</h2><p>...and body text here!</p>",
+            }
+          }
+        }
+      }
+    }],
+    "models": [
+        {
+            "title":  "Mailing Labels",
+            "id": "mailinglabels",
+            "fields": [
+                {
+                    "component": "title",
+                    "valueType": "string",
+                    "name": "title",
+                    "label": "Title",
+                    "multi": false
+                }]}],
+    "filters": [
+    {
+      "id": "section",
+      "components": [
+        "text",
+        "image",
+        "button",
+        "title",
+        "hero",
+        "cards",
+        "columns",
+        "fragment",
+        "teaser",
+        "businesscards",
+        "mailinglabels"
+      ]
+    }
+  ]
+}
