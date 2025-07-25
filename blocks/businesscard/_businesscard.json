@@ -1,6 +1,6 @@
 {
      "definitions": [{
-      "title": "Busines Cards",
+      "title": "Busines Card",
       "id": "businesscard",
       "plugins": {
         "xwalk": {
@@ -42,7 +42,7 @@
         "fragment",
         "teaser",
         "businesscard",
-        "mailinglabel" 
+        "mailinglabels" 
       ]
     }
   ]

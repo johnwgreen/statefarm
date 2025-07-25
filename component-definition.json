@@ -83,7 +83,7 @@
       "id": "blocks",
       "components": [
         {
-          "title": "Busines Cards",
+          "title": "Busines Card",
           "id": "businesscard",
           "plugins": {
             "xwalk": {

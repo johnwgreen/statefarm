@@ -61,7 +61,7 @@
     {
       "id": "section",
       "components": [
-        "text",
+         "text",
         "image",
         "button",
         "title",
@@ -69,7 +69,9 @@
         "cards",
         "columns",
         "fragment",
-        "teaser"
+        "teaser",
+        "businesscard",
+        "mailinglabels" 
       ]
     }
   ]
