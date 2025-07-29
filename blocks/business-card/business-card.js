@@ -17,7 +17,7 @@ export default function decorate(block) {
   // Example radio button 1
   const radio1Label = document.createElement('label');
   radio1Label.innerHTML = `
-    <input type="radio" name="designOption" value="option1">
+    <input type="radio" name="designOption" value="ADBDEMO/Don Stolper-1">
     <img src="https://author-p48154-e244509.adobeaemcloud.com/content/dam/State%20Farm/headshots/Don%20Stolper.png?text=Image+1" alt="Design Option 1">
     <span>Don Stolper</span>
   `;
@@ -26,8 +26,8 @@ export default function decorate(block) {
   // Example radio button 2
   const radio2Label = document.createElement('label');
   radio2Label.innerHTML = `
-    <input type="radio" name="designOption" value="option2">
-    <img src="https://author-p48154-e244509.adobeaemcloud.com/content/dam/State%20Farm/headshots/Brian%20Stolper.png??text=Image+2" alt="Design Option 2">
+    <input type="radio" name="designOption" value="ADBDEMO/Brian Stolper-1">
+    <img src="https://s7d1.scene7.com/is/image/ADBDEMO/Brian%20Stolper?$Responsive$" alt="Design Option 2">
     <span>Brian Stolper</span>
   `;
   radioButtonsContainer.append(radio2Label);
@@ -35,7 +35,7 @@ export default function decorate(block) {
   // Example radio button 3
   const radio3Label = document.createElement('label');
   radio3Label.innerHTML = `
-    <input type="radio" name="designOption" value="option3">
+    <input type="radio" name="designOption" value="Sharon Sullivan-1">
     <img src="https://author-p48154-e244509.adobeaemcloud.com/content/dam/State%20Farm/headshots/nobackground/Sharon%20Sullivan.png??text=Image+3" alt="Design Option 3">
     <span>Sharon Sullivan</span>
   `;
@@ -44,7 +44,7 @@ export default function decorate(block) {
   // Example radio button 4
   const radio4Label = document.createElement('label');
   radio4Label.innerHTML = `
-    <input type="radio" name="designOption" value="option4">
+    <input type="radio" name="designOption" value="ADBDEMO/William Frank-1">
     <img src="https://author-p48154-e244509.adobeaemcloud.com/content/dam/State%20Farm/headshots/nobackground/William%20Frank.png??text=Image+4" alt="Design Option 4">
     <span>William Frank</span>
   `;
@@ -116,8 +116,14 @@ export default function decorate(block) {
     // Add your logic to handle the preview here
     const selectedOption = form.querySelector('input[name="designOption"]:checked');
     const selectedCategory = form.querySelector('#office-select');
-    console.log('Selected Person:', selectedOption ? selectedOption.value : 'None');
-    console.log('Selected Office:', selectedCategory.value);
-    previewContainer.innerHTML = 'This is the new';
+
+    var imageURL = 'https://s7d1.scene7.com/is/image/ADBDEMO/business-card?';
+    var pictureURL = '$picture=' + selectedOption.value; // + '&';
+    var agentName = '$name=' + selectedOption +'&';
+    var address = '$address=%3C%3CAddress%3E%3E&$city=%3C%3CCity%3E%3E%2C%20%3CState%3E%3E%20%20%3CZip%3E%3E&';
+    var phoneNumber = '$phone=%3C%3CPhone%3E%3E&';
+    var emailAddress = '';
+
+    previewContainer.innerHTML = '<img src="' + imageURL + pictureURL + '">';
   });
 }
