@@ -24,7 +24,7 @@ export default function decorate(block) {
     radio1Label.innerHTML = `
     <input type="radio" name="designOption" value="option1">
     <img src="https://author-p48154-e244509.adobeaemcloud.com/content/dam/State%20Farm/headshots/Don%20Stolper.png?text=Image+1" alt="Design Option 1">
-    <span>Option 1</span>
+    <span>Don Stolper</span>
   `;
     radioButtonsContainer.append(radio1Label);
 
@@ -32,8 +32,8 @@ export default function decorate(block) {
     const radio2Label = document.createElement('label');
     radio2Label.innerHTML = `
     <input type="radio" name="designOption" value="option2">
-    <img src="https://author-p48154-e244509.adobeaemcloud.com/content/dam/State%20Farm/headshots/Don%20Stolper.png??text=Image+2" alt="Design Option 2">
-    <span>Option 2</span>
+    <img src="https://author-p48154-e244509.adobeaemcloud.com/content/dam/State%20Farm/headshots/Brian%20Stolper.png??text=Image+2" alt="Design Option 2">
+    <span>Brian Stolper</span>
   `;
     radioButtonsContainer.append(radio2Label);
 
@@ -41,8 +41,8 @@ export default function decorate(block) {
     const radio3Label = document.createElement('label');
     radio3Label.innerHTML = `
     <input type="radio" name="designOption" value="option3">
-    <img src="https://author-p48154-e244509.adobeaemcloud.com/content/dam/State%20Farm/headshots/Don%20Stolper.png??text=Image+3" alt="Design Option 3">
-    <span>Option 3</span>
+    <img src="https://author-p48154-e244509.adobeaemcloud.com/content/dam/State%20Farm/headshots/nobackground/Sharon%20Sullivan.png??text=Image+3" alt="Design Option 3">
+    <span>Sharon Sullivan</span>
   `;
     radioButtonsContainer.append(radio3Label);
 
@@ -50,8 +50,8 @@ export default function decorate(block) {
     const radio4Label = document.createElement('label');
     radio4Label.innerHTML = `
     <input type="radio" name="designOption" value="option4">
-    <img src="https://author-p48154-e244509.adobeaemcloud.com/content/dam/State%20Farm/headshots/Don%20Stolper.png??text=Image+4" alt="Design Option 4">
-    <span>Option 4</span>
+    <img src="https://author-p48154-e244509.adobeaemcloud.com/content/dam/State%20Farm/headshots/nobackground/William%20Frank.png??text=Image+4" alt="Design Option 4">
+    <span>William Frank</span>
   `;
     radioButtonsContainer.append(radio4Label);
 
@@ -60,19 +60,22 @@ export default function decorate(block) {
     // ---
     // Add a dropdown (select element)
     const dropdownLabel = document.createElement('label');
-    dropdownLabel.textContent = 'Select a category:';
+    dropdownLabel.textContent = 'Select an Office:';
     const select = document.createElement('select');
-    select.name = 'category';
-    select.id = 'category-select';
+    select.name = 'office';
+    select.id = 'office-select';
 
     const option1 = document.createElement('option');
-    option1.value = 'cat1';
-    option1.textContent = 'Category 1';
+    option1.value = '123main';
+    option1.textContent = '123 Main Street';
+    // St. Paul, MN 55112-9583
+    // joe@joesmith.com
     select.append(option1);
 
     const option2 = document.createElement('option');
-    option2.value = 'cat2';
-    option2.textContent = 'Category 2';
+    option2.value = '424';
+    option2.textContent = '424 Hadley Drive, Suite F';
+    //Manhattan Beach, CA 90266-1671 
     select.append(option2);
 
     const option3 = document.createElement('option');
@@ -91,8 +94,27 @@ export default function decorate(block) {
     previewButton.className = 'preview-button';
     form.append(previewButton);
 
+    
+
     // Append the form to the block
     block.append(form);
+
+    // --
+    // Add a preview area
+    // Create an image element
+    const previewContainer = document.createElement('div');
+    previewContainer.id = "preview";
+    const img = document.createElement('img');
+
+    // Set the image source
+    img.src = 'https://author-p48154-e244509.adobeaemcloud.com/content/dam/State%20Farm/headshots/nobackground/William%20Frank.png'; // Replace with your image URL
+
+    // Set optional attributes (e.g., alt text, width, height)
+    img.alt = 'Placeholder Image';
+    img.width = 150;
+    img.height = 150;
+    previewContainer.append(img);
+    block.append(previewContainer);
 
     // You might want to add event listeners here for form submission or radio button changes
     form.addEventListener('submit', (e) => {
@@ -100,8 +122,9 @@ export default function decorate(block) {
         console.log('Form submitted!');
         // Add your logic to handle the preview here
         const selectedOption = form.querySelector('input[name="designOption"]:checked');
-        const selectedCategory = form.querySelector('#category-select');
-        console.log('Selected Design:', selectedOption ? selectedOption.value : 'None');
-        console.log('Selected Category:', selectedCategory.value);
+        const selectedCategory = form.querySelector('#office-select');
+        console.log('Selected Person:', selectedOption ? selectedOption.value : 'None');
+        console.log('Selected Office:', selectedCategory.value);
+         previewContainer.innerHTML = "This is the new"; 
     });
 }
