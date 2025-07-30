@@ -18,7 +18,7 @@ export default function decorate(block) {
   const radio1Label = document.createElement('label');
   radio1Label.innerHTML = `
     <input type="radio" name="designOption" value="ADBDEMO/Don Stolper-1">
-    <img src="https://author-p48154-e244509.adobeaemcloud.com/content/dam/State%20Farm/headshots/Don%20Stolper.png?text=Image+1" alt="Design Option 1">
+    <img src="https://s7d1.scene7.com/is/image/ADBDEMO/Don Stolper-1" alt="Design Option 1">
     <span>Don Stolper</span>
   `;
   radioButtonsContainer.append(radio1Label);
@@ -36,7 +36,7 @@ export default function decorate(block) {
   const radio3Label = document.createElement('label');
   radio3Label.innerHTML = `
     <input type="radio" name="designOption" value="Sharon Sullivan-1">
-    <img src="https://author-p48154-e244509.adobeaemcloud.com/content/dam/State%20Farm/headshots/nobackground/Sharon%20Sullivan.png??text=Image+3" alt="Design Option 3">
+    <img src="https://s7d1.scene7.com/is/image/ADBDEMO/Sharon Sullivan-1?$Responsive$" alt="Design Option 3">
     <span>Sharon Sullivan</span>
   `;
   radioButtonsContainer.append(radio3Label);
@@ -45,7 +45,7 @@ export default function decorate(block) {
   const radio4Label = document.createElement('label');
   radio4Label.innerHTML = `
     <input type="radio" name="designOption" value="ADBDEMO/William Frank-1">
-    <img src="https://author-p48154-e244509.adobeaemcloud.com/content/dam/State%20Farm/headshots/nobackground/William%20Frank.png??text=Image+4" alt="Design Option 4">
+    <img src="https://s7d1.scene7.com/is/image/ADBDEMO/William Frank-1?$Responsive$" alt="Design Option 4">
     <span>William Frank</span>
   `;
   radioButtonsContainer.append(radio4Label);
@@ -61,7 +61,7 @@ export default function decorate(block) {
   select.id = 'office-select';
 
   const option1 = document.createElement('option');
-  option1.value = '123main';
+  option1.value = '123';
   option1.textContent = '123 Main Street';
   // St. Paul, MN 55112-9583
   // joe@joesmith.com
@@ -72,11 +72,6 @@ export default function decorate(block) {
   option2.textContent = '424 Hadley Drive, Suite F';
   // Manhattan Beach, CA 90266-1671
   select.append(option2);
-
-  const option3 = document.createElement('option');
-  option3.value = 'cat3';
-  option3.textContent = 'Category 3';
-  select.append(option3);
 
   dropdownLabel.append(select);
   form.append(dropdownLabel);
@@ -115,17 +110,49 @@ export default function decorate(block) {
     console.log('Form submitted!');
     // Add your logic to handle the preview here
     const selectedOption = form.querySelector('input[name="designOption"]:checked');
-    const selectedCategory = form.querySelector('#office-select');
-    
+    const selectedOffice = form.querySelector('#office-select');
+    const imageURL = 'https://s7d1.scene7.com/is/image/ADBDEMO/business-card?';
+    const pictureURL = `$picture=${selectedOption.value}&`;
+    let agentName = '$name=';
+    let address = '$address=';
+    let phoneNumber = '$phone=';
+    let emailAddress = '$email=';
 
+    switch (selectedOffice.value) {
+      case '123':
+      // Code to execute if expression === value1
+        address = '$address=123 Main Street&$city=St. Paul, MN 55112-9583&';
+        break;
+      case '424':
+        // Code to execute if expression === value2
+        address = '$address=424 Hadley Drive, Suite F&$city=&St. Paul, MN 55112-9583&';
+        break;
+      default:
+    }
 
-    var imageURL = 'https://s7d1.scene7.com/is/image/ADBDEMO/business-card?';
-    var pictureURL = '$picture=' + selectedOption.value; // + '&';
-    var agentName = '$name=' + selectedOption +'&';
-    var address = '$address=%3C%3CAddress%3E%3E&$city=%3C%3CCity%3E%3E%2C%20%3CState%3E%3E%20%20%3CZip%3E%3E&';
-    var phoneNumber = '$phone=%3C%3CPhone%3E%3E&';
-    var emailAddress = '';
-
-    previewContainer.innerHTML = '<img src="' + imageURL + pictureURL + '">';
+    switch (selectedOption.value) {
+      case 'ADBDEMO/William Frank-1':
+        agentName += 'William Frank&';
+        phoneNumber += '727.789.1234&';
+        emailAddress += 'wfrank@staefarm.com';
+        break;
+      case 'Sharon Sullivan-1':
+        agentName += 'William Frank&';
+        phoneNumber += '727.789.1234&';
+        emailAddress += 'wfrank@staefarm.com';
+        break;
+      case 'ADBDEMO/Brian Stolper-1':
+        agentName += 'William Frank&';
+        phoneNumber += '727.789.1234&';
+        emailAddress += 'wfrank@staefarm.com';
+        break;
+      case 'ADBDEMO/Don Stolper-1':
+        agentName += 'William Frank&';
+        phoneNumber += '727.789.1234&';
+        emailAddress += 'wfrank@staefarm.com';
+        break;
+      default:
+    }
+    previewContainer.innerHTML = `<img src="${imageURL}${pictureURL}${agentName}${address}${phoneNumber}${emailAddress}">`;
   });
 }
