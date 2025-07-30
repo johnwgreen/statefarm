@@ -134,22 +134,22 @@ export default function decorate(block) {
       case 'ADBDEMO/William Frank-1':
         agentName += 'William Frank&';
         phoneNumber += '727.789.1234&';
-        emailAddress += 'wfrank@staefarm.com';
+        emailAddress += 'wfrank@statefarm.com';
         break;
       case 'Sharon Sullivan-1':
-        agentName += 'William Frank&';
-        phoneNumber += '727.789.1234&';
-        emailAddress += 'wfrank@staefarm.com';
+        agentName += 'Sharon Sullivan&';
+        phoneNumber += '813.235.8521&';
+        emailAddress += 'ssullivan@statefarm.com';
         break;
       case 'ADBDEMO/Brian Stolper-1':
-        agentName += 'William Frank&';
-        phoneNumber += '727.789.1234&';
-        emailAddress += 'wfrank@staefarm.com';
+        agentName += 'Brian Stolper&';
+        phoneNumber += '404.687.5468&';
+        emailAddress += 'bstolper@statefarm.com';
         break;
       case 'ADBDEMO/Don Stolper-1':
         agentName += 'William Frank&';
-        phoneNumber += '727.789.1234&';
-        emailAddress += 'wfrank@staefarm.com';
+        phoneNumber += '305.348.9876&';
+        emailAddress += 'dstolper@statefarm.com';
         break;
       default:
     }
