@@ -116,6 +116,8 @@ export default function decorate(block) {
     // Add your logic to handle the preview here
     const selectedOption = form.querySelector('input[name="designOption"]:checked');
     const selectedCategory = form.querySelector('#office-select');
+    
+
 
     var imageURL = 'https://s7d1.scene7.com/is/image/ADBDEMO/business-card?';
     var pictureURL = '$picture=' + selectedOption.value; // + '&';
