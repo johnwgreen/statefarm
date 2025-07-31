@@ -77,14 +77,15 @@ export default function decorate(block) {
   form.append(dropdownLabel);
 
   // ---
-  // Add Title and Designations 
+  // Add Title and Designations
+
   const titleLabel = document.createElement('label');
   titleLabel.setAttribute('for', 'dynamicInput'); // Associate label with input
   titleLabel.textContent = 'Title: '; // Set label text
   const titleInput = document.createElement('input');
-  titleInput.type = "text"; // Set the type to 'text'
-  titleInput.id = "title"; // Optional: Set an ID
-  titleInput.placeholder = "Enter title here"; // Optional: Add a placeholder
+  titleInput.type = 'text'; // Set the type to 'text'
+  titleInput.id = 'title'; // Optional: Set an ID
+  titleInput.placeholder = 'Enter title here'; // Optional: Add a placeholder
   form.append(titleLabel);
   form.append(titleInput);
 
@@ -132,7 +133,7 @@ export default function decorate(block) {
   // You might want to add event listeners here for form submission or radio button changes
   form.addEventListener('submit', (e) => {
     e.preventDefault(); // Prevent default form submission
-    console.log('Form submitted!');
+    // console.log('Form submitted!')
     // Add your logic to handle the preview here
     const selectedOption = form.querySelector('input[name="designOption"]:checked');
     const selectedOffice = form.querySelector('#office-select');
