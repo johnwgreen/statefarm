@@ -6,6 +6,14 @@
   max-height: 350px;
 }
 
+.businesscard {
+  display: flex;
+  background: #fff;
+  align-items: stretch;
+  max-height: 350px;
+}
+
+
 .businesscard.align-right {
   display: flex;
   flex-direction: row-reverse;
@@ -111,4 +119,170 @@
     text-align: center;
     padding: 5rem 7rem;
   }
+}
+/* --- NEW STYLES FOR IMAGE SELECTION --- */
+
+.my-custom-form {
+  display: flex;
+  flex-direction: column; /* Stack form sections */
+  gap: 20px; /* Space between sections */
+  padding: 20px; /* Some padding around the form */
+}
+.radio-buttons-container {
+  display: grid; /* Use CSS Grid for layout */
+  grid-template-columns: repeat(4, 1fr); /* 4 columns of equal width */
+  gap: 20px; /* Gap between the cards */
+  justify-items: center; /* Center items horizontally in their grid cell */
+  align-items: start; /* Align items to the start of their grid cell vertically */
+}
+
+.person-selection-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center content horizontally within each card */
+  border: 1px solid #ddd; /* Light border for the card */
+  border-radius: 8px; /* Slightly rounded corners */
+  padding: 15px;
+  text-align: center; /* Center text inside the card */
+  cursor: pointer; /* Indicate it's clickable */
+  transition: all 0.2s ease-in-out; /* Smooth transition for hover/active states */
+  min-width: 180px; /* Minimum width to prevent shrinking too much */
+  max-width: 200px; 
+}
+
+.person-selection-card:hover {
+  border-color: #a0a0a0; /* Darker border on hover */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow */
+}
+
+.person-selection-card img {
+  width: 150px; /* Fixed width for images */
+  height: 170px; /* Fixed height to make them square */
+  object-fit: cover; /* Crop images to fit */
+  border-radius: 10%;
+  margin-bottom: 10px; /* Space between image and radio button */
+  border: 1px solid #eee; /* A subtle border around the circular image */
+  margin-bottom: 15px;
+}
+
+.person-name {
+  font-weight: bold;
+  margin-bottom: 12px; /* Space between name and image */
+  font-size: 1.1em;
+  color: #333;
+}
+
+.radio-label {
+  display: flex; /* Use flex to center the radio button */
+  justify-content: center;
+  align-items: center;
+  width: 100%; /* Take full width of its parent for centering */
+  margin-top: 10px; /* Space between image and radio */
+}
+
+.radio-label input[type="radio"] {
+  /* Hide the default radio button */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Custom inner circle for selected radio button */
+.radio-label input[type="radio"]:checked {
+  border-color: #d42027; /* State Farm Red */
+}
+
+.radio-label input[type="radio"]:checked::before {
+  content: '';
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #d42027; /* State Farm Red */
+}
+
+/* Visually indicate selected card */
+.person-selection-card:has(input[type="radio"]:checked) {
+  border-color: #d42027; /* Highlight border with State Farm Red */
+  box-shadow: 0 0 10px rgba(212, 32, 39, 0.3); /* Red glow */
+}
+
+/* Form Controls (Select and Button) */
+.form-controls {
+  display: flex;
+  gap: 15px; /* Space between select and button */
+  align-items: center; /* Align items to the bottom */
+}
+
+.form-controls label {
+  display: flex;
+  flex-direction: column; /* Stack label and select */
+  font-weight: bold;
+}
+
+.form-controls select {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1em;
+  height: 38px; /* Match button height for better alignment */
+  box-sizing: border-box; 
+}
+
+.preview-button {
+  background-color: #d42027; /* State Farm Red */
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  height: 38px; /* Ensure consistent height */
+  display: flex; /* Use flex to center text vertically if padding is tricky */
+  align-items: center;
+  justify-content: center;
+  margin-top: 25px;
+}
+
+.preview-button:hover {
+  background-color: #a7181f; /* Darker red on hover */
+}
+
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .radio-buttons-container {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
+  }
+
+  .form-controls {
+    flex-direction: column; /* Stack select and button vertically on smaller screens */
+    align-items: stretch; /* Stretch to full width */
+  }
+}
+
+@media (max-width: 480px) {
+  .radio-buttons-container {
+    grid-template-columns: 1fr; /* Single column on mobile */
+  }
+}
+
+
+/* Ensure the review image doesn't get messed up by new styles */
+#review {
+  margin-top: 30px; /* Add some space above the preview card */
+  display: flex;
+  justify-content: center; /* Center the preview image */
 }
