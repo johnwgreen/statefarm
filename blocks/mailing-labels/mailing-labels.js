@@ -181,6 +181,7 @@ export default function decorate(block) {
         phoneNumber = '&';
         emailAddress = '';
     }
+  
     previewContainer.innerHTML = `<img src="${imageURL}${pictureURL}${agentName}${address}${phoneNumber}${emailAddress}">`;
   });
 }
