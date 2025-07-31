@@ -155,6 +155,9 @@
 #review img {
   width: 650px;
   height: auto;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 0 2rem;
 }
 
 /* Responsive adjustments for smaller screens */
