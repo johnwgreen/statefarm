@@ -129,10 +129,10 @@ export default function decorate(block) {
   };
 
   // Add event listeners for form changes
-  form.querySelectorAll('input[name="designOption"]').forEach(radio => {
+  form.querySelectorAll('input[name="designOption"]').forEach((radio) => {
     radio.addEventListener('change', checkFormCompletion);
   });
-  
+
   select.addEventListener('change', checkFormCompletion);
 
   // Add event listener for form submission
@@ -142,11 +142,11 @@ export default function decorate(block) {
     const selectedOffice = form.querySelector('#office-select');
     const imageURL = 'https://s7d1.scene7.com/is/image/ADBDEMO/business-card?';
     let pictureURL = '';
-    
+
     if (selectedOption) {
       pictureURL = `$picture=${selectedOption.value}&`;
     }
-    
+
     let agentName = '$name=';
     let address = '$address=';
     let phoneNumber = '$phone=';
