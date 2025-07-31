@@ -77,6 +77,31 @@ export default function decorate(block) {
   form.append(dropdownLabel);
 
   // ---
+  // Add Title and Designations 
+  const titleLabel = document.createElement('label');
+  titleLabel.setAttribute('for', 'dynamicInput'); // Associate label with input
+  titleLabel.textContent = 'Title: '; // Set label text
+  const titleInput = document.createElement('input');
+  titleInput.type = "text"; // Set the type to 'text'
+  titleInput.id = "title"; // Optional: Set an ID
+  titleInput.placeholder = "Enter title here"; // Optional: Add a placeholder
+  form.append(titleLabel);
+  form.append(titleInput);
+
+  //  ---
+  // Add Designations
+  const designation1Label = document.createElement('label');
+  designation1Label.setAttribute('for', 'dynamicInput'); // Associate label with input
+  designation1Label.textContent = 'CCP: '; // Set label text
+  const checkbox = document.createElement('input');
+  checkbox.type = 'checkbox'; // Set the type to 'checkbox'
+  checkbox.id = ''; // Optional: Set an ID
+  checkbox.name = 'myCheckbox'; // Optional: Set a name
+  checkbox.value = 'value1';
+  form.append(checkbox);
+  form.append(designation1Label);
+
+  // ---
   // Add the 'Preview' button
   const previewButton = document.createElement('button');
   previewButton.type = 'submit'; // Or 'button' if you handle submission with JS
@@ -95,7 +120,7 @@ export default function decorate(block) {
   const img = document.createElement('img');
 
   // Set the image source
-  img.src = 'https://author-p48154-e244509.adobeaemcloud.com/content/dam/State%20Farm/headshots/nobackground/William%20Frank.png'; // Replace with your image URL
+  img.src = 'https://s7d1.scene7.com/is/image/ADBDEMO/mailing-standard?'; // Replace with your image URL
 
   // Set optional attributes (e.g., alt text, width, height)
   img.alt = 'Placeholder Image';
@@ -111,7 +136,7 @@ export default function decorate(block) {
     // Add your logic to handle the preview here
     const selectedOption = form.querySelector('input[name="designOption"]:checked');
     const selectedOffice = form.querySelector('#office-select');
-    const imageURL = 'https://s7d1.scene7.com/is/image/ADBDEMO/business-card?';
+    const imageURL = 'https://s7d1.scene7.com/is/image/ADBDEMO/mailing-standard?';
     const pictureURL = `$picture=${selectedOption.value}&`;
     let agentName = '$name=';
     let address = '$address=';
@@ -152,6 +177,9 @@ export default function decorate(block) {
         emailAddress += 'dstolper@statefarm.com';
         break;
       default:
+        agentName = '&';
+        phoneNumber = '&';
+        emailAddress = '';
     }
     previewContainer.innerHTML = `<img src="${imageURL}${pictureURL}${agentName}${address}${phoneNumber}${emailAddress}">`;
   });
