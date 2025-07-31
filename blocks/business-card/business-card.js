@@ -48,22 +48,22 @@ export default function decorate(block) {
   radioButtonsContainer.append(createPersonCard(
     'Don Stolper',
     'https://s7d1.scene7.com/is/image/ADBDEMO/Don Stolper-1',
-    'ADBDEMO/Don Stolper-1'
+    'ADBDEMO/Don Stolper-1',
   ));
   radioButtonsContainer.append(createPersonCard(
     'Brian Stolper',
     'https://s7d1.scene7.com/is/image/ADBDEMO/Brian%20Stolper?$Responsive$',
-    'ADBDEMO/Brian Stolper-1'
+    'ADBDEMO/Brian Stolper-1',
   ));
   radioButtonsContainer.append(createPersonCard(
     'Sharon Sullivan',
     'https://s7d1.scene7.com/is/image/ADBDEMO/Sharon Sullivan-1?$Responsive$',
-    'Sharon Sullivan-1'
+    'Sharon Sullivan-1',
   ));
   radioButtonsContainer.append(createPersonCard(
     'William Frank',
     'https://s7d1.scene7.com/is/image/ADBDEMO/William Frank-1?$Responsive$',
-    'ADBDEMO/William Frank-1'
+    'ADBDEMO/William Frank-1',
   ));
 
   form.append(radioButtonsContainer);
@@ -126,8 +126,8 @@ export default function decorate(block) {
     const selectedOffice = form.querySelector('#office-select');
     const imageURL = 'https://s7d1.scene7.com/is/image/ADBDEMO/business-card?';
     let pictureURL = '';
-    if (selectedOption) { // Check if an option is selected
-        pictureURL = `$picture=${selectedOption.value}&`;
+    if (selectedOption) {
+      pictureURL = `$picture=${selectedOption.value}&`;
     }
     let agentName = '$name=';
     let address = '$address=';
