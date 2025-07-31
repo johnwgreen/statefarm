@@ -1,124 +1,6 @@
 /* stylelint-disable */
-.businesscard {
-  display: flex;
-  background: #fff;
-  align-items: stretch;
-  max-height: 350px;
-}
-
-.businesscard {
-  display: flex;
-  background: #fff;
-  align-items: stretch;
-  max-height: 350px;
-}
-
-
-.businesscard.align-right {
-  display: flex;
-  flex-direction: row-reverse;
-}
-
-.businesscard.align-right .businesscard-img-col {
-  display: flex;
-  flex-direction: row-reverse;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-}
-
-.businesscard.bg-secondary {
-  background: #eee;
-  color: #000;
-}
-
-.businesscard.bg-secondary a:any-link.businesscard-link {
-  background-color: #fff;
-  color:#000;
-}
-
-.businesscard.bg-secondary > div:not(.businesscard-img-col) {
-  color: #000;
-}
-
-.businesscard-img-col {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  flex: 1;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-}
-
-.businesscard-img-col img {
-  height: 100%;
-  width: auto;
-}
-
-.businesscard > div:not(.businesscard-img-col) {
-  color: #000;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 1em;
-}
-
-.businesscard > div:not(.businesscard-img-col) > div {
-  box-sizing: border-box;
-  padding: 3rem;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.businesscard > div:not(.businesscard-img-col) h3 {
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-  letter-spacing: 0.96px;
-  margin-bottom: 1rem;
-  width: 100%;
-}
-
-.businesscard > div:not(.businesscard-img-col) h3 a {
-  color: inherit;
-  font-size: inherit;
-  font-weight: inherit;
-  font-style: inherit;
-  letter-spacing: inherit;
-}
-
-.businesscard > div:not(.businesscard-img-col) p {
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 22px;
-  letter-spacing: 0.56px;
-  margin: 0;
-}
-
-.businesscard a:any-link.businesscard-link {
-  background-color: #fff;
-  display: inline-block;
-  padding-top: 5px;
-  padding-bottom: 5px;
-}
-
-@media (width <= 900px) {
-  .businesscard {
-    flex-direction: column-reverse;
-    max-height: 568px;
-  }
-  .businesscard .businesscard-img-col {
-    border-top-right-radius: 0;
-    border-top-left-radius: 0;
-  }
-  .businesscard .businesscard > div:not(.businesscard-img-col) > div {
-    text-align: center;
-    padding: 5rem 7rem;
-  }
+.business-card {
+  margin: 3rem 0;
 }
 /* --- NEW STYLES FOR IMAGE SELECTION --- */
 
@@ -142,12 +24,13 @@
   align-items: center; /* Center content horizontally within each card */
   border: 1px solid #ddd; /* Light border for the card */
   border-radius: 8px; /* Slightly rounded corners */
-  padding: 15px;
+  padding: 1.25rem 2rem;
   text-align: center; /* Center text inside the card */
   cursor: pointer; /* Indicate it's clickable */
   transition: all 0.2s ease-in-out; /* Smooth transition for hover/active states */
   min-width: 180px; /* Minimum width to prevent shrinking too much */
   max-width: 200px; 
+  width: 100%;
 }
 
 .person-selection-card:hover {
@@ -156,13 +39,11 @@
 }
 
 .person-selection-card img {
-  width: 150px; /* Fixed width for images */
-  height: 170px; /* Fixed height to make them square */
+  width: 175px; /* Fixed width for images */
+  height: auto; /* Fixed height to make them square */
   object-fit: cover; /* Crop images to fit */
-  border-radius: 10%;
-  margin-bottom: 10px; /* Space between image and radio button */
-  border: 1px solid #eee; /* A subtle border around the circular image */
-  margin-bottom: 15px;
+  border-radius: 8px;
+  margin-bottom: 5px;
 }
 
 .person-name {
@@ -213,7 +94,7 @@
 
 /* Visually indicate selected card */
 .person-selection-card:has(input[type="radio"]:checked) {
-  border-color: #d42027; /* Highlight border with State Farm Red */
+  border: 2px solid #d42027; /* Highlight border with State Farm Red */
   box-shadow: 0 0 10px rgba(212, 32, 39, 0.3); /* Red glow */
 }
 
@@ -226,8 +107,10 @@
 
 .form-controls label {
   display: flex;
-  flex-direction: column; /* Stack label and select */
+  flex-direction: row; /* Stack label and select */
   font-weight: bold;
+  align-items: center;
+  gap: 1rem;
 }
 
 .form-controls select {
@@ -237,6 +120,7 @@
   font-size: 1em;
   height: 38px; /* Match button height for better alignment */
   box-sizing: border-box; 
+  min-width: 350px;
 }
 
 .preview-button {
@@ -253,13 +137,25 @@
   display: flex; /* Use flex to center text vertically if padding is tricky */
   align-items: center;
   justify-content: center;
-  margin-top: 25px;
 }
 
 .preview-button:hover {
   background-color: #a7181f; /* Darker red on hover */
 }
 
+
+/* Ensure the review image doesn't get messed up by new styles */
+#review {
+  margin-top: 30px; /* Add some space above the preview card */
+  display: flex;
+  justify-content: center; /* Center the preview image */
+  min-height: 130px;
+}
+
+#review img {
+  width: 650px;
+  height: auto;
+}
 
 /* Responsive adjustments for smaller screens */
 @media (max-width: 768px) {
@@ -271,18 +167,22 @@
     flex-direction: column; /* Stack select and button vertically on smaller screens */
     align-items: stretch; /* Stretch to full width */
   }
+
+  .form-controls label {
+    flex-direction: column;
+  }
+
+  .form-controls select {
+    min-width: unset;
+  }
+
+  #review {
+    min-height: unset;
+  }
 }
 
 @media (max-width: 480px) {
   .radio-buttons-container {
     grid-template-columns: 1fr; /* Single column on mobile */
   }
-}
-
-
-/* Ensure the review image doesn't get messed up by new styles */
-#review {
-  margin-top: 30px; /* Add some space above the preview card */
-  display: flex;
-  justify-content: center; /* Center the preview image */
 }
