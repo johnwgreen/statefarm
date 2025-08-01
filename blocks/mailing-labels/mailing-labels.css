@@ -1,114 +1,191 @@
 /* stylelint-disable */
-.mailinglabels {
+.mailing-labels {
+  margin: 3rem 0;
+}
+/* --- NEW STYLES FOR IMAGE SELECTION --- */
+
+.my-custom-form {
   display: flex;
-  background: #fff;
-  align-items: stretch;
-  max-height: 350px;
+  flex-direction: column; /* Stack form sections */
+  gap: 20px; /* Space between sections */
+  padding: 20px; /* Some padding around the form */
+}
+.radio-buttons-container {
+  display: grid; /* Use CSS Grid for layout */
+  grid-template-columns: repeat(4, 1fr); /* 4 columns of equal width */
+  gap: 20px; /* Gap between the cards */
+  justify-items: center; /* Center items horizontally in their grid cell */
+  align-items: start; /* Align items to the start of their grid cell vertically */
 }
 
-.mailinglabels.align-right {
-  display: flex;
-  flex-direction: row-reverse;
-}
-
-.mailinglabels.align-right .mailinglabels-img-col {
-  display: flex;
-  flex-direction: row-reverse;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-}
-
-.mailinglabels.bg-secondary {
-  background: #eee;
-  color: #000;
-}
-
-.mailinglabels.bg-secondary a:any-link.mailinglabels-link {
-  background-color: #fff;
-  color:#000;
-}
-
-.mailinglabels.bg-secondary > div:not(.mailinglabels-img-col) {
-  color: #000;
-}
-
-.mailinglabels-img-col {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  flex: 1;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-}
-
-.mailinglabels-img-col img {
-  height: 100%;
-  width: auto;
-}
-
-.mailinglabels > div:not(.mailinglabels-img-col) {
-  color: #000;
-  flex: 1;
+.person-selection-card {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 1em;
-}
-
-.mailinglabels > div:not(.mailinglabels-img-col) > div {
-  box-sizing: border-box;
-  padding: 3rem;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.mailinglabels > div:not(.mailinglabels-img-col) h3 {
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-  letter-spacing: 0.96px;
-  margin-bottom: 1rem;
+  align-items: center; /* Center content horizontally within each card */
+  border: 1px solid #ddd; /* Light border for the card */
+  border-radius: 8px; /* Slightly rounded corners */
+  padding: 1.25rem 2rem;
+  text-align: center; /* Center text inside the card */
+  cursor: pointer; /* Indicate it's clickable */
+  transition: all 0.2s ease-in-out; /* Smooth transition for hover/active states */
+  min-width: 180px; /* Minimum width to prevent shrinking too much */
+  max-width: 200px; 
   width: 100%;
 }
 
-.mailinglabels > div:not(.mailinglabels-img-col) h3 a {
-  color: inherit;
-  font-size: inherit;
-  font-weight: inherit;
-  font-style: inherit;
-  letter-spacing: inherit;
+.person-selection-card:hover {
+  border-color: #a0a0a0; /* Darker border on hover */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow */
 }
 
-.mailinglabels > div:not(.mailinglabels-img-col) p {
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 22px;
-  letter-spacing: 0.56px;
-  margin: 0;
+.person-selection-card img {
+  width: 175px; /* Fixed width for images */
+  height: auto; /* Fixed height to make them square */
+  object-fit: cover; /* Crop images to fit */
+  border-radius: 8px;
+  margin-bottom: 5px;
 }
 
-.mailinglabels a:any-link.mailinglabels-link {
-  background-color: #fff;
-  display: inline-block;
-  padding-top: 5px;
-  padding-bottom: 5px;
+.person-name {
+  font-weight: bold;
+  margin-bottom: 12px; /* Space between name and image */
+  font-size: 1.1em;
+  color: #333;
 }
 
-@media (width <= 900px) {
-  .mailinglabels {
-    flex-direction: column-reverse;
-    max-height: 568px;
+.radio-label {
+  display: flex; /* Use flex to center the radio button */
+  justify-content: center;
+  align-items: center;
+  width: 100%; /* Take full width of its parent for centering */
+  margin-top: 10px; /* Space between image and radio */
+}
+
+.radio-label input[type="radio"] {
+  /* Hide the default radio button */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Custom inner circle for selected radio button */
+.radio-label input[type="radio"]:checked {
+  border-color: #d42027; /* State Farm Red */
+}
+
+.radio-label input[type="radio"]:checked::before {
+  content: '';
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #d42027; /* State Farm Red */
+}
+
+/* Visually indicate selected card */
+.person-selection-card:has(input[type="radio"]:checked) {
+  border: 2px solid #d42027; /* Highlight border with State Farm Red */
+  box-shadow: 0 0 10px rgba(212, 32, 39, 0.3); /* Red glow */
+}
+
+/* Form Controls (Select and Button) */
+.form-controls {
+  display: flex;
+  gap: 15px; /* Space between select and button */
+  align-items: center; /* Align items to the bottom */
+}
+
+.form-controls label {
+  display: flex;
+  flex-direction: row; /* Stack label and select */
+  font-weight: bold;
+  align-items: center;
+  gap: 1rem;
+}
+
+.form-controls select {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1em;
+  height: 38px; /* Match button height for better alignment */
+  box-sizing: border-box; 
+  min-width: 350px;
+}
+
+.preview-button {
+  background-color: #d42027; /* State Farm Red */
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  height: 38px; /* Ensure consistent height */
+  display: flex; /* Use flex to center text vertically if padding is tricky */
+  align-items: center;
+  justify-content: center;
+}
+
+.preview-button:hover {
+  background-color: #a7181f; /* Darker red on hover */
+}
+
+
+/* Ensure the review image doesn't get messed up by new styles */
+#review {
+  margin-top: 30px; /* Add some space above the preview card */
+  display: flex;
+  justify-content: center; /* Center the preview image */
+  min-height: 130px;
+}
+
+#review img {
+  width: 650px;
+  height: auto;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 0 2rem;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .radio-buttons-container {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
   }
-  .mailinglabels .mailinglabels-img-col {
-    border-top-right-radius: 0;
-    border-top-left-radius: 0;
+
+  .form-controls {
+    flex-direction: column; /* Stack select and button vertically on smaller screens */
+    align-items: stretch; /* Stretch to full width */
   }
-  .mailinglabels .mailinglabels > div:not(.mailinglabels-img-col) > div {
-    text-align: center;
-    padding: 5rem 7rem;
+
+  .form-controls label {
+    flex-direction: column;
+  }
+
+  .form-controls select {
+    min-width: unset;
+  }
+
+  #review {
+    min-height: unset;
+  }
+}
+
+@media (max-width: 480px) {
+  .radio-buttons-container {
+    grid-template-columns: 1fr; /* Single column on mobile */
   }
 }
