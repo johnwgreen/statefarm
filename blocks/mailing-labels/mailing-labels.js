@@ -10,7 +10,7 @@ export default function decorate(block) {
   const form = document.createElement('form');
   form.className = 'my-custom-form'; // Add a class for styling if needed
 
- // Add radio buttons with images
+  // Add radio buttons with images
   const radioButtonsContainer = document.createElement('div');
   radioButtonsContainer.className = 'radio-buttons-container';
 
@@ -43,7 +43,6 @@ export default function decorate(block) {
       // Trigger change event to update form completion status
       const event = new Event('change');
       input.dispatchEvent(event);
-
     });
 
     cardDiv.append(label);
@@ -73,7 +72,7 @@ export default function decorate(block) {
   ));
 
   form.append(radioButtonsContainer);
- 
+
   //---
   // Create the options div
   const formControlsDiv = document.createElement('div');
@@ -104,7 +103,7 @@ export default function decorate(block) {
 
   // ---
   // Add Title and Designations
-  //ChFC CLU CPCU
+
   const titleLabel = document.createElement('label');
   titleLabel.setAttribute('for', 'dynamicInput'); // Associate label with input
   titleLabel.textContent = 'Title: '; // Set label text
@@ -112,7 +111,7 @@ export default function decorate(block) {
   titleInput.type = 'text'; // Set the type to 'text'
   titleInput.id = 'title'; // Optional: Set an ID
   titleInput.placeholder = 'Enter title here'; // Optional: Add a placeholder
-  
+
   titleLabel.append(titleInput);
   formControlsDiv.append(titleLabel);
 
@@ -126,7 +125,7 @@ export default function decorate(block) {
   designationInput.type = 'text'; // Set the type to 'text'
   designationInput.id = 'title'; // Optional: Set an ID
   designationInput.placeholder = 'Enter title here'; // Optional: Add a placeholder
-  
+
   designationLabel.append(designationInput);
   formControlsDiv.append(designationLabel);
 
@@ -140,7 +139,7 @@ export default function decorate(block) {
   licenseInput.type = 'text'; // Set the type to 'text'
   licenseInput.id = 'title'; // Optional: Set an ID
   licenseInput.placeholder = ''; // Optional: Add a placeholder
-  
+
   licenseLabel.append(licenseInput);
   formControlsDiv.append(licenseLabel);
 
@@ -150,10 +149,9 @@ export default function decorate(block) {
   previewButton.type = 'submit'; // Or 'button' if you handle submission with JS
   previewButton.textContent = 'Preview';
   previewButton.className = 'preview-button';
- 
+
   formControlsDiv.append(previewButton);
   form.append(formControlsDiv);
-  
 
   // Append the form to the block
   block.append(form);
@@ -190,12 +188,12 @@ export default function decorate(block) {
     let emailAddress = '$email=';
     let licenseNumber = '';
     let titleText = titleInput.value;
-    let designationText = designationInput.value;
-    if ((titleText != "") && (designationText != ""))  
+    const designationText = designationInput.value;
+    if ((titleText !== '') && (designationText !== '')) {
       titleText += ` ${designationText}%5Cline%20`;
-    else if ((titleText != "") && (designationText == "")) {
-      titleText += `%5Cline%20`;
-    } else if ((titleText == "") && (designationText != "")) {
+    } else if ((titleText !== '') && (designationText === '')) {
+      titleText += '%5Cline%20';
+    } else if ((titleText === '') && (designationText !== '')) {
       titleText += `${designationText}%5Cline%20`;
     }
 
@@ -241,7 +239,7 @@ export default function decorate(block) {
         phoneNumber = '';
         emailAddress = '';
     }
-  
+
     previewContainer.innerHTML = `<img src="${imageURL}${pictureURL}${agentName}${titleText}${address}${phoneNumber}${emailAddress}${licenseNumber}">`;
   });
 }
