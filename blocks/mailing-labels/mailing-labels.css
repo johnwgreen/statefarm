@@ -102,7 +102,7 @@
 .form-controls {
   display: flex;
   gap: 15px; /* Space between select and button */
-  align-items: center; /* Align items to the bottom */
+  flex-direction: column;
 }
 
 .form-controls label {

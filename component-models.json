@@ -242,6 +242,19 @@
     ]
   },
   {
+    "title": "Video Ad",
+    "id": "videoad",
+    "fields": [
+      {
+        "component": "title",
+        "valueType": "string",
+        "name": "title",
+        "label": "Title",
+        "multi": false
+      }
+    ]
+  },
+  {
     "id": "teaser",
     "fields": [
       {

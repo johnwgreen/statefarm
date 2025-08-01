@@ -15,23 +15,11 @@
       "hero",
       "cards",
       "columns",
-      "fragment"
-    ]
-  },
-  {
-    "id": "section",
-    "components": [
-      "text",
-      "image",
-      "button",
-      "title",
-      "hero",
-      "cards",
-      "columns",
       "fragment",
       "teaser",
       "businesscard",
-      "mailinglabels"
+      "mailinglabels",
+      "videoad"
     ]
   },
   {
@@ -53,38 +41,6 @@
       "image",
       "button",
       "title"
-    ]
-  },
-  {
-    "id": "section",
-    "components": [
-      "text",
-      "image",
-      "button",
-      "title",
-      "hero",
-      "cards",
-      "columns",
-      "fragment",
-      "teaser",
-      "businesscard",
-      "mailinglabels"
-    ]
-  },
-  {
-    "id": "section",
-    "components": [
-      "text",
-      "image",
-      "button",
-      "title",
-      "hero",
-      "cards",
-      "columns",
-      "fragment",
-      "teaser",
-      "businesscard",
-      "mailinglabels"
     ]
   }
 ]
