@@ -248,10 +248,10 @@ export default function decorate(block) {
 
     switch (selectedOffice.value) {
       case '1':
-        address = '541 S York Street' + newLine + 'Elmhurst, IL 90031';
+        address = '541 S York Street' + newLine + 'Elmhurst, IL 60126';
         break;
       case '2':
-        address = '447 North York Street' + newLine + 'Elmhurst, IL 90031';
+        address = '447 North York Street' + newLine + 'Elmhurst, IL 60126';
         break;
       default:
         adress = "default";
