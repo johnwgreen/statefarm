@@ -88,14 +88,14 @@ export default function decorate(block) {
   // First office option (selected by default)
   const option1 = document.createElement('option');
   option1.value = '1';
-  option1.textContent = '2807 N Broadway, Los Angeles';
+  option1.textContent = '541 S York Street, Elmhurst';
   option1.selected = true; // Set as selected by default
   select.append(option1);
 
   // Second office option
   const option2 = document.createElement('option');
   option2.value = '2';
-  option2.textContent = '5513 S Eastern Ave, Las Vegas';
+  option2.textContent = '447 North York Street, Elmhurst';
   select.append(option2);
 
   dropdownLabel.append(select);
@@ -112,7 +112,7 @@ export default function decorate(block) {
   titleInput.placeholder = ''; // Optional: Add a placeholder
 
   titleLabel.append(titleInput);
-  formControlsDiv.append(titleLabel);
+  //formControlsDiv.append(titleLabel);
 
   //  ---
   // Add Designations
@@ -186,6 +186,29 @@ export default function decorate(block) {
   previewContainer.id = 'review';
   block.append(previewContainer);
 
+  // Create checkbox
+  const termsLabel = document.createElement('label');
+  termsLabel.setAttribute('for', 'checkbox'); // Associate label with input
+  const approveDiv = document.createElement('div');
+  approveDiv.className = 'form-controls';
+  termsLabel.textContent = 'By clicking this checkbox, you approve the order as you have entered.   Press the Add to cart button to finish the process.';
+  const approveCheckbox = document.createElement('input');
+  approveCheckbox.type = 'checkbox';
+  approveCheckbox.id = 'acceptCheckbox';
+  
+  // Create button
+  const addButton = document.createElement('button');
+  addButton.textContent = 'Add to cart';
+  addButton.style.display = 'none'; // Initially hidden
+  addButton.className = 'preview-button';
+  approveCheckbox.addEventListener('change', () => {
+      addButton.style.display = approveCheckbox.checked ? 'block' : 'none';
+    });
+  termsLabel.appendChild(approveCheckbox);
+  approveDiv.appendChild(termsLabel);
+  approveDiv.appendChild(addButton);
+  block.append(approveDiv);
+
   // Function to check if form is complete
   const checkFormCompletion = () => {
     const isImageSelected = form.querySelector('input[name="designOption"]:checked') !== null;
@@ -225,10 +248,10 @@ export default function decorate(block) {
 
     switch (selectedOffice.value) {
       case '1':
-        address = '2807 N Broadway' + newLine + 'Los Angeles, CA 90031';
+        address = '541 S York Street' + newLine + 'Elmhurst, IL 90031';
         break;
       case '2':
-        address = '5513 S Eastern Ave' + newLine + 'Las Vegas, NV 89119';
+        address = '447 North York Street' + newLine + 'Elmhurst, IL 90031';
         break;
       default:
         adress = "default";
