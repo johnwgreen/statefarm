@@ -140,7 +140,7 @@ export default function decorate(block) {
     e.preventDefault();
     const selectedOption = form.querySelector('input[name="designOption"]:checked');
     const selectedOffice = form.querySelector('#office-select');
-    const imageURL = 'https://s7d1.scene7.com/is/image/ADBDEMO/business-card?';
+    const imageURL = 'https://s7d1.scene7.com/is/image/ADBDEMO/video-background?';
     let pictureURL = '';
 
     if (selectedOption) {

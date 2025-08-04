@@ -178,6 +178,7 @@ export default function decorate(block) {
     e.preventDefault(); // Prevent default form submission
     // console.log('Form submitted!')
     // Add your logic to handle the preview here
+    const newLine = '%5Cline%20';
     const selectedOption = form.querySelector('input[name="designOption"]:checked');
     const selectedOffice = form.querySelector('#office-select');
     const imageURL = 'https://s7d1.scene7.com/is/image/ADBDEMO/mailing-standard?';
@@ -186,7 +187,7 @@ export default function decorate(block) {
     let address = '$address=';
     let phoneNumber = '$phone=';
     let emailAddress = '$email=';
-    let licenseNumber = '';
+    let licenseNumber = licenseInput.value;
     let titleText = titleInput.value;
     const designationText = designationInput.value;
     if ((titleText !== '') && (designationText !== '')) {
@@ -214,25 +215,22 @@ export default function decorate(block) {
         agentName += 'William Frank The Stolper Insurance Company%5Cline%20';
         phoneNumber = '727.789.1234%5Cline%20';
         emailAddress = 'wfrank@statefarm.com';
-        licenseNumber = '';
         break;
       case 'Sharon Sullivan-1':
         agentName += 'Sharon Sullivan The Stolper Insurance Company%5Cline%20';
         phoneNumber = '813.235.8521%5Cline%20';
         emailAddress = 'ssullivan@statefarm.com%5Cline%20';
-        licenseNumber = '';
+
         break;
       case 'ADBDEMO/Brian Stolper-1':
         agentName += 'Brian Stolper The Stolper Insurance Company%5Cline%20';
         phoneNumber = '404.87.5468%5Cline%20';
         emailAddress = 'bstolper@statefarm.com%5Cline%20';
-        licenseNumber = '';
         break;
       case 'ADBDEMO/Don Stolper-1':
         agentName += 'William Frank The Stolper Insurance Company%5Cline%20';
         phoneNumber = '305.348.9876%5Cline%20';
         emailAddress = 'dstolper@statefarm.com%5Cline%20';
-        licenseNumber = '123584';
         break;
       default:
         agentName = '';
