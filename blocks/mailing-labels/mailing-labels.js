@@ -215,6 +215,10 @@ export default function decorate(block) {
     previewButton.disabled = !(isImageSelected && isOfficeSelected);
   };
 
+ // Add event listeners for form changes
+  form.querySelectorAll('input[name="designOption"]').forEach((radio) => {
+    radio.addEventListener('change', checkFormCompletion);
+  });
   select.addEventListener('change', checkFormCompletion);
 
   // You might want to add event listeners here for form submission or radio button changes
@@ -256,7 +260,7 @@ export default function decorate(block) {
         address = newLine + '447 North York Street' + newLine + 'Elmhurst, IL 60126';
         break;
       default:
-        adress = "default";
+        
     }
     agentName += address;
 
@@ -264,7 +268,7 @@ export default function decorate(block) {
       agentName += newLine + phoneNumber;
 
     if ( licenseNumber != '')
-      agentName += newLine + licenseNumber;
+      agentName += newLine + 'License %23' + licenseNumber;
 
     previewContainer.innerHTML = `<img src="${imageURL}${pictureURL}${agentName}">`;
   });
