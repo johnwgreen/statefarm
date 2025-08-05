@@ -128,14 +128,14 @@ export default function decorate(block) {
 
   addButton.addEventListener('click', (e) => {
     e.preventDefault();
-    
+
     // Save original button text
     const originalText = addButton.textContent;
-    
+
     // First show loading state
     addButton.textContent = 'Adding...';
-    addButton.disabled = true;  // Optional: disable button during process
-    
+    addButton.disabled = true; // Optional: disable button during process
+
     // Simulate loading delay (replace this with your actual async operation)
     setTimeout(() => {
       // After loading completes, show success state
@@ -170,31 +170,31 @@ export default function decorate(block) {
     previewButton.disabled = !isImageSelected;
   };
 
-  form.querySelectorAll('input[name="designOption"]').forEach((radio) =>
-    radio.addEventListener('change', checkFormCompletion)
-  );
+  form.querySelectorAll('input[name="designOption"]').forEach((radio) => radio.addEventListener('change', checkFormCompletion));
 
   // When Preview is clicked
   previewButton.addEventListener('click', () => {
     const selectedOption = form.querySelector('input[name="designOption"]:checked');
     const selectedOffice = select.value;
     const imageURL = 'https://s7d1.scene7.com/is/image/ADBDEMO/business-card?';
-    let pictureURL = selectedOption ? `$picture=${selectedOption.value}&` : '';
+    const pictureURL = selectedOption ? `$picture=${selectedOption.value}&` : '';
     const newLine = '%5Cline%20';
     let agentName = '$text=Sharon Sullivan';
 
     if (designationInput.value) agentName += newLine + designationInput.value;
     switch (selectedOffice) {
       case '1':
-        agentName += newLine + '541 S York Street' + newLine + 'Elmhurst, IL 60126';
+        agentName += `${newLine}541 S York Street${newLine}Elmhurst, IL 60126`;
         break;
       case '2':
-        agentName += newLine + '447 North York Street' + newLine + 'Elmhurst, IL 60126';
+        agentName += `${newLine}447 North York Street${newLine}Elmhurst, IL 60126`;
+        break;
+      default:
         break;
     }
     if (phoneInput.value) agentName += newLine + phoneInput.value;
     if (emailInput.value) agentName += newLine + emailInput.value;
-    if (licenseInput.value) agentName += newLine + 'License %23' + licenseInput.value;
+    if (licenseInput.value) agentName = `${agentName}${newLine}License %23${licenseInput.value}`;
 
     const finalURL = `${imageURL}${pictureURL}${agentName}`;
     previewContainer.innerHTML = `<img src="${finalURL}">`;

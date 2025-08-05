@@ -228,21 +228,21 @@ export default function decorate(block) {
     const imageURL = 'https://s7d1.scene7.com/is/image/ADBDEMO/mailing-standard?';
     const pictureURL = `$picture=${selectedOption.value}&`;
     let agentName = '$agentBlock=Sharon Sullivan ';
-    let companyName = companyInput.value;
+    const companyName = companyInput.value;
     let address = '';
-    let phoneNumber = phoneInput.value;
-    let licenseNumber = licenseInput.value;
+    const phoneNumber = phoneInput.value;
+    const licenseNumber = licenseInput.value;
     let titleText = titleInput.value;
     const designationText = designationInput.value;
 
-    if (companyName !== '') agentName += ' ' + companyName;
+    if (companyName !== '') agentName = `${agentName} ${companyName}`;
 
     if (titleText !== '' && designationText !== '') {
-      titleText = newLine + titleText + ` ${designationText}`;
+      titleText = `${newLine} ${titleText} ${designationText}`;
     } else if (titleText !== '' && designationText === '') {
-      titleText = newLine + titleText;
+      titleText = `${newLine}${titleText}`;
     } else if (titleText === '' && designationText !== '') {
-      titleText = newLine + `${designationText}`;
+      titleText = `${newLine}${designationText}`;
     } else {
       titleText = '';
     }
@@ -250,18 +250,18 @@ export default function decorate(block) {
 
     switch (selectedOffice) {
       case '1':
-        address = newLine + '541 S York Street' + newLine + 'Elmhurst, IL 60126';
+        address = `${newLine}541 S York Street${newLine}Elmhurst, IL 60126`;
         break;
       case '2':
-        address = newLine + '447 North York Street' + newLine + 'Elmhurst, IL 60126';
+        address = `${newLine}447 North York Street${newLine}Elmhurst, IL 60126`;
         break;
       default:
         address = '';
     }
     agentName += address;
 
-    if (phoneNumber !== '') agentName += newLine + phoneNumber;
-    if (licenseNumber !== '') agentName += newLine + 'License %23' + licenseNumber;
+    if (phoneNumber !== '') agentName = `${agentName}${newLine}${phoneNumber}`;
+    if (licenseNumber !== '') agentName = `${agentName}${newLine}License %23${licenseNumber}`;
 
     previewContainer.innerHTML = `<img src="${imageURL}${pictureURL}${agentName}">`;
 
@@ -287,14 +287,14 @@ export default function decorate(block) {
   // Add to cart button feedback
   addButton.addEventListener('click', (e) => {
     e.preventDefault();
-    
+
     // Save original button text
     const originalText = addButton.textContent;
-    
+
     // First show loading state
     addButton.textContent = 'Adding...';
-    addButton.disabled = true;  // Optional: disable button during process
-    
+    addButton.disabled = true; // Optional: disable button during process
+
     // Simulate loading delay (replace this with your actual async operation)
     setTimeout(() => {
       // After loading completes, show success state

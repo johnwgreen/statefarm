@@ -178,15 +178,15 @@ export default function decorate(block) {
     const pictureURL = selectedOption ? `$picture=${selectedOption.value}&` : '';
     const newLine = '%5Cline%20';
 
-    let agentName = '$name=Susan Johnson&';
+    const agentName = '$name=Susan Johnson&';
     let address = '$address=';
 
     switch (selectedOffice) {
       case '1':
-        address += '424 Hadley Drive' + newLine + 'Suite F' + newLine + 'Manhattan Beach, CA' + newLine + '90266-16717';
+        address = `${address}424 Hadley Drive${newLine}Suite F${newLine}Manhattan Beach, CA${newLine}90266-16717`;
         break;
       case '2':
-        address += '5513 S Eastern Ave' + newLine + 'Las Vegas, NV 89119';
+        address = `${address}5513 S Eastern Ave${newLine}Las Vegas, NV 89119`;
         break;
       default:
         address += '';
@@ -224,14 +224,14 @@ export default function decorate(block) {
   // Add to cart button click - simulate adding process
   addButton.addEventListener('click', (e) => {
     e.preventDefault();
-    
+
     // Save original button text
     const originalText = addButton.textContent;
-    
+
     // First show loading state
     addButton.textContent = 'Adding...';
-    addButton.disabled = true;  // Optional: disable button during process
-    
+    addButton.disabled = true; // Optional: disable button during process
+
     // Simulate loading delay (replace this with your actual async operation)
     setTimeout(() => {
       // After loading completes, show success state
