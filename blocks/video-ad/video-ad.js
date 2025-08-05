@@ -200,6 +200,8 @@ export default function decorate(block) {
 
  if (phoneNumber !== ''){
         address += newLine + phoneNumber + newLine;
+    } else {
+      address += newLine + newLine;
     }
     const finalURL = `${imageURL}${pictureURL}${agentName}${address}`;
     previewContainer.innerHTML = `<img src="${finalURL}">`;

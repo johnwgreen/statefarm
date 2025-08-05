@@ -51,30 +51,30 @@ export default function decorate(block) {
 
   // Populate using the helper function
   radioButtonsContainer.append(createPersonCard(
-    'Don Stolper',
-    'https://s7d1.scene7.com/is/image/ADBDEMO/Don Stolper-1',
-    'ADBDEMO/Don Stolper-1',
+    'Sharon Sullivan',
+    'https://s7d1.scene7.com/is/image/ADBDEMO/Sharon Sullivan?$Responsive$',
+    'ADBDEMO/Sharon Sullivan',
   ));
   radioButtonsContainer.append(createPersonCard(
-    'Brian Stolper',
-    'https://s7d1.scene7.com/is/image/ADBDEMO/Brian%20Stolper?$Responsive$',
-    'ADBDEMO/Brian Stolper-1',
+    'Sharon Sullivan',
+    'https://s7d1.scene7.com/is/image/ADBDEMO/Sharon Sullivan-3?$Responsive$',
+    'ADBDEMO/Sharon Sullivan-3',
   ));
   radioButtonsContainer.append(createPersonCard(
     'Sharon Sullivan',
     'https://s7d1.scene7.com/is/image/ADBDEMO/Sharon Sullivan-1?$Responsive$',
-    'Sharon Sullivan-1',
+    'ADBDEMO/Sharon Sullivan-1',
   ));
   radioButtonsContainer.append(createPersonCard(
-    'William Frank',
-    'https://s7d1.scene7.com/is/image/ADBDEMO/William Frank-1?$Responsive$',
-    'ADBDEMO/William Frank-1',
+    'No Picture',
+    'https://s7d1.scene7.com/is/image/ADBDEMO/blank1?$Responsive$',
+    'ADBDEMO/blank1',
   ));
 
   form.append(radioButtonsContainer);
 
-  //---
-  // Create the options div
+  // ---
+  // Add a dropdown (select element)
   const formControlsDiv = document.createElement('div');
   formControlsDiv.className = 'form-controls';
 
@@ -87,34 +87,44 @@ export default function decorate(block) {
 
   // First office option (selected by default)
   const option1 = document.createElement('option');
-  option1.value = '123';
-  option1.textContent = '123 Main Street';
+  option1.value = '1';
+  option1.textContent = '541 S York Street, Elmhurst';
   option1.selected = true; // Set as selected by default
   select.append(option1);
 
   // Second office option
   const option2 = document.createElement('option');
-  option2.value = '424';
-  option2.textContent = '424 Hadley Drive, Suite F';
+  option2.value = '2';
+  option2.textContent = '447 North York Street, Elmhurst';
   select.append(option2);
 
   dropdownLabel.append(select);
   formControlsDiv.append(dropdownLabel);
 
-  // ---
-  // Add Title and Designations
+  // Add Company Name
+  const companyLabel = document.createElement('label');
+  companyLabel.setAttribute('for', 'dynamicInput'); // Associate label with input
+  companyLabel.textContent = 'Company: '; // Set label text
+  const companyInput = document.createElement('input');
+  companyInput.type = 'text'; // Set the type to 'text'
+  companyInput.id = 'company'; // Optional: Set an ID
+  companyInput.placeholder = ''; // Optional: Add a placeholder
 
+  companyLabel.append(companyInput);
+  formControlsDiv.append(companyLabel);
+
+  // ---
+  // Add Title
   const titleLabel = document.createElement('label');
   titleLabel.setAttribute('for', 'dynamicInput'); // Associate label with input
   titleLabel.textContent = 'Title: '; // Set label text
   const titleInput = document.createElement('input');
   titleInput.type = 'text'; // Set the type to 'text'
   titleInput.id = 'title'; // Optional: Set an ID
-  titleInput.placeholder = 'Enter title here'; // Optional: Add a placeholder
-
+  titleInput.placeholder = ''; // Optional: Add a placeholder
+  titleInput.setAttribute("maxlength", "30"); 
   titleLabel.append(titleInput);
   formControlsDiv.append(titleLabel);
-
   //  ---
   // Add Designations
   // ChFC CLU CPCU
@@ -123,21 +133,33 @@ export default function decorate(block) {
   designationLabel.textContent = 'Designation: '; // Set label text
   const designationInput = document.createElement('input');
   designationInput.type = 'text'; // Set the type to 'text'
-  designationInput.id = 'title'; // Optional: Set an ID
-  designationInput.placeholder = 'Enter title here'; // Optional: Add a placeholder
+  designationInput.id = 'designation'; // Optional: Set an ID
+  designationInput.placeholder = ''; // Optional: Add a placeholder
 
   designationLabel.append(designationInput);
   formControlsDiv.append(designationLabel);
 
   //  ---
-  // Add Designations
-  // ChFC CLU CPCU
+  // Add phone number
+  const phoneLabel = document.createElement('label');
+  phoneLabel.setAttribute('for', 'dynamicInput'); // Associate label with input
+  phoneLabel.textContent = 'Phone: '; // Set label text
+  const phoneInput = document.createElement('input');
+  phoneInput.type = 'text'; // Set the type to 'text'
+  phoneInput.id = 'phone'; // Optional: Set an ID
+  phoneInput.placeholder = ''; // Optional: Add a placeholder
+
+  phoneLabel.append(phoneInput);
+  formControlsDiv.append(phoneLabel);
+
+   //  ---
+  // Add license number
   const licenseLabel = document.createElement('label');
   licenseLabel.setAttribute('for', 'dynamicInput'); // Associate label with input
   licenseLabel.textContent = 'License Number: '; // Set label text
   const licenseInput = document.createElement('input');
   licenseInput.type = 'text'; // Set the type to 'text'
-  licenseInput.id = 'title'; // Optional: Set an ID
+  licenseInput.id = 'license'; // Optional: Set an ID
   licenseInput.placeholder = ''; // Optional: Add a placeholder
 
   licenseLabel.append(licenseInput);
@@ -149,6 +171,7 @@ export default function decorate(block) {
   previewButton.type = 'submit'; // Or 'button' if you handle submission with JS
   previewButton.textContent = 'Preview';
   previewButton.className = 'preview-button';
+  previewButton.disabled = true; // Disabled by default (until image is selected)
 
   formControlsDiv.append(previewButton);
   form.append(formControlsDiv);
@@ -156,22 +179,43 @@ export default function decorate(block) {
   // Append the form to the block
   block.append(form);
 
-  // --
+ // --
   // Add a preview area
-  // Create an image element
   const previewContainer = document.createElement('div');
   previewContainer.id = 'review';
-  const img = document.createElement('img');
-
-  // Set the image source
-  img.src = 'https://s7d1.scene7.com/is/image/ADBDEMO/mailing-standard?'; // Replace with your image URL
-
-  // Set optional attributes (e.g., alt text, width, height)
-  img.alt = 'Placeholder Image';
-  img.width = 150;
-  img.height = 150;
-  previewContainer.append(img);
   block.append(previewContainer);
+
+  // Create checkbox
+  const termsLabel = document.createElement('label');
+  termsLabel.setAttribute('for', 'checkbox'); // Associate label with input
+  const approveDiv = document.createElement('div');
+  approveDiv.className = 'form-controls';
+  termsLabel.textContent = 'By clicking this checkbox, you approve the order as you have entered.   Press the Add to cart button to finish the process.';
+  const approveCheckbox = document.createElement('input');
+  approveCheckbox.type = 'checkbox';
+  approveCheckbox.id = 'acceptCheckbox';
+  
+  // Create button
+  const addButton = document.createElement('button');
+  addButton.textContent = 'Add to cart';
+  addButton.style.display = 'none'; // Initially hidden
+  addButton.className = 'preview-button';
+  approveCheckbox.addEventListener('change', () => {
+      addButton.style.display = approveCheckbox.checked ? 'block' : 'none';
+    });
+  termsLabel.appendChild(approveCheckbox);
+  approveDiv.appendChild(termsLabel);
+  approveDiv.appendChild(addButton);
+  block.append(approveDiv);
+
+  // Function to check if form is complete
+  const checkFormCompletion = () => {
+    const isImageSelected = form.querySelector('input[name="designOption"]:checked') !== null;
+    const isOfficeSelected = select.value !== '';
+    previewButton.disabled = !(isImageSelected && isOfficeSelected);
+  };
+
+  select.addEventListener('change', checkFormCompletion);
 
   // You might want to add event listeners here for form submission or radio button changes
   form.addEventListener('submit', (e) => {
@@ -183,61 +227,45 @@ export default function decorate(block) {
     const selectedOffice = form.querySelector('#office-select');
     const imageURL = 'https://s7d1.scene7.com/is/image/ADBDEMO/mailing-standard?';
     const pictureURL = `$picture=${selectedOption.value}&`;
-    let agentName = '$agentBlock=';
-    let address = '$address=';
-    let phoneNumber = '$phone=';
-    let emailAddress = '$email=';
+    let agentName = '$agentBlock=Sharon Sullivan ';
+    let companyName = companyInput.value;
+    let address = '';
+    let phoneNumber = phoneInput.value;
     let licenseNumber = licenseInput.value;
     let titleText = titleInput.value;
     const designationText = designationInput.value;
+    if (companyName !== '')
+      agentName += ' ' + companyName;
+
     if ((titleText !== '') && (designationText !== '')) {
-      titleText += ` ${designationText}%5Cline%20`;
+      titleText = newLine + titleText + ` ${designationText}`;
     } else if ((titleText !== '') && (designationText === '')) {
-      titleText += '%5Cline%20';
+      titleText = newLine + titleText;
     } else if ((titleText === '') && (designationText !== '')) {
-      titleText += `${designationText}%5Cline%20`;
+      titleText += newLine + `${designationText}`;
+    } else {
+      titleText = '';
     }
+    agentName += titleText;
 
-    switch (selectedOffice.value) {
-      case '123':
-      // Code to execute if expression === value1
-        address = '123 Main Street%5Cline%20St. Paul, MN 55112-9583%5Cline%20';
+     switch (selectedOffice.value) {
+      case '1':
+        address = newLine + '541 S York Street' + newLine + 'Elmhurst, IL 60126';
         break;
-      case '424':
-        // Code to execute if expression === value2
-        address = '424 Hadley Drive%5Cline%20Suite F%5Cline%20St. Paul, MN 55112-9583%5Cline%20';
+      case '2':
+        address = newLine + '447 North York Street' + newLine + 'Elmhurst, IL 60126';
         break;
       default:
+        adress = "default";
     }
+    agentName += address;
 
-    switch (selectedOption.value) {
-      case 'ADBDEMO/William Frank-1':
-        agentName += 'William Frank The Stolper Insurance Company%5Cline%20';
-        phoneNumber = '727.789.1234%5Cline%20';
-        emailAddress = 'wfrank@statefarm.com';
-        break;
-      case 'Sharon Sullivan-1':
-        agentName += 'Sharon Sullivan The Stolper Insurance Company%5Cline%20';
-        phoneNumber = '813.235.8521%5Cline%20';
-        emailAddress = 'ssullivan@statefarm.com%5Cline%20';
+    if ( phoneNumber != '')
+      agentName += newLine + phoneNumber;
 
-        break;
-      case 'ADBDEMO/Brian Stolper-1':
-        agentName += 'Brian Stolper The Stolper Insurance Company%5Cline%20';
-        phoneNumber = '404.87.5468%5Cline%20';
-        emailAddress = 'bstolper@statefarm.com%5Cline%20';
-        break;
-      case 'ADBDEMO/Don Stolper-1':
-        agentName += 'William Frank The Stolper Insurance Company%5Cline%20';
-        phoneNumber = '305.348.9876%5Cline%20';
-        emailAddress = 'dstolper@statefarm.com%5Cline%20';
-        break;
-      default:
-        agentName = '';
-        phoneNumber = '';
-        emailAddress = '';
-    }
+    if ( licenseNumber != '')
+      agentName += newLine + licenseNumber;
 
-    previewContainer.innerHTML = `<img src="${imageURL}${pictureURL}${agentName}${titleText}${address}${phoneNumber}${emailAddress}${licenseNumber}">`;
+    previewContainer.innerHTML = `<img src="${imageURL}${pictureURL}${agentName}">`;
   });
 }

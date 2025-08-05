@@ -2,6 +2,10 @@
 .mailing-labels {
   margin: 3rem 0;
 }
+/* stylelint-disable */
+.business-card {
+  margin: 3rem 0;
+}
 /* --- NEW STYLES FOR IMAGE SELECTION --- */
 
 .my-custom-form {
@@ -102,7 +106,8 @@
 .form-controls {
   display: flex;
   gap: 15px; /* Space between select and button */
-  flex-direction: column;
+  /*align-items: center;*/
+  flex-direction: column; /* Align items to the bottom */
 }
 
 .form-controls label {
