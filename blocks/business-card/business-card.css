@@ -186,6 +186,10 @@
   gap: 2rem;
 }
 
+.step-1 .form-controls .preview-button {
+  margin-top: 1.5rem;
+}
+
 .step-2 .form-controls label {
   margin: 1.5rem 0;
 }
