@@ -1,4 +1,10 @@
 export default function decorate(block) {
+  
+  // Example URL: https://example.com?name=John&age=30
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const agentNumber = urlParams.get('agent'); // "John"
+
   block.innerHTML = ''; // Clears the existing content of the block
 
   // Create container for steps
@@ -51,26 +57,50 @@ export default function decorate(block) {
   };
 
   // Add cards
-  radioButtonsContainer.append(createPersonCard(
-    'Sharon Sullivan',
-    'https://s7d1.scene7.com/is/image/ADBDEMO/Sharon Sullivan?$Responsive$',
-    'ADBDEMO/Sharon Sullivan',
-  ));
-  radioButtonsContainer.append(createPersonCard(
-    'Sharon Sullivan',
-    'https://s7d1.scene7.com/is/image/ADBDEMO/Sharon Sullivan-3?$Responsive$',
-    'ADBDEMO/Sharon Sullivan-3',
-  ));
-  radioButtonsContainer.append(createPersonCard(
-    'Sharon Sullivan',
-    'https://s7d1.scene7.com/is/image/ADBDEMO/Sharon Sullivan-1?$Responsive$',
-    'ADBDEMO/Sharon Sullivan-1',
-  ));
-  radioButtonsContainer.append(createPersonCard(
-    'No Picture',
-    'https://s7d1.scene7.com/is/image/ADBDEMO/blank1?$Responsive$',
-    'ADBDEMO/blank1',
-  ));
+  if (agentNumber !== null) {
+    radioButtonsContainer.append(createPersonCard(
+      'William Frank',
+      'https://s7d1.scene7.com/is/image/ADBDEMO/William Frank?$Responsive$',
+      'ADBDEMO/William Frank',
+    ));
+    radioButtonsContainer.append(createPersonCard(
+      'William Frank',
+      'https://s7d1.scene7.com/is/image/ADBDEMO/William Frank-3?$Responsive$',
+      'ADBDEMO/William Frank-3',
+    ));
+    radioButtonsContainer.append(createPersonCard(
+      'William Frank',
+      'https://s7d1.scene7.com/is/image/ADBDEMO/William Frank-1?$Responsive$',
+      'ADBDEMO/William Frank-1',
+    ));
+    radioButtonsContainer.append(createPersonCard(
+      'No Picture',
+      'https://s7d1.scene7.com/is/image/ADBDEMO/blank1?$Responsive$',
+      'ADBDEMO/blank1',
+    ));
+  }
+  else {
+    radioButtonsContainer.append(createPersonCard(
+      'David Mordis',
+      'https://s7d1.scene7.com/is/image/ADBDEMO/David Mordis?$Responsive$',
+      'ADBDEMO/David Mordis',
+    ));
+    radioButtonsContainer.append(createPersonCard(
+      'David Mordis',
+      'https://s7d1.scene7.com/is/image/ADBDEMO/David Mordis-3?$Responsive$',
+      'ADBDEMO/David Mordis-3',
+    ));
+    radioButtonsContainer.append(createPersonCard(
+      'David Mordis',
+      'https://s7d1.scene7.com/is/image/ADBDEMO/David Mordis-1?$Responsive$',
+      'ADBDEMO/David Mordis-1',
+    ));
+    radioButtonsContainer.append(createPersonCard(
+      'No Picture',
+      'https://s7d1.scene7.com/is/image/ADBDEMO/blank1?$Responsive$',
+      'ADBDEMO/blank1',
+    ));
+  }
 
   form.append(radioButtonsContainer);
 
@@ -86,17 +116,18 @@ export default function decorate(block) {
   select.id = 'office-select';
   select.required = true;
 
-  const option1 = document.createElement('option');
-  option1.value = '1';
-  option1.textContent = '541 S York Street, Elmhurst';
-  option1.selected = true;
-  select.append(option1);
-
-  const option2 = document.createElement('option');
-  option2.value = '2';
-  option2.textContent = '447 North York Street, Elmhurst';
-  select.append(option2);
-
+  if (agentNumber !== null ) {
+    const option1 = document.createElement('option');
+    option1.value = '1';
+    option1.textContent = '4950 W Craig Rd Ste B5, Las Vegas';
+    option1.selected = true;
+    select.append(option1);
+  } else {
+    const option2 = document.createElement('option');
+    option2.value = '2';
+    option2.textContent = '5777 W Century Blvd Suite 665, Los Angeles, CA';
+    select.append(option2);
+  }
   dropdownLabel.append(select);
   formControlsDiv.append(dropdownLabel);
 
@@ -139,7 +170,7 @@ export default function decorate(block) {
 
   // License number input
   const licenseLabel = document.createElement('label');
-  licenseLabel.textContent = 'License Number: ';
+  licenseLabel.textContent = ((agentNumber !== null) ? 'License Number: ' : 'License Number*: ');
   const licenseInput = document.createElement('input');
   licenseInput.type = 'text';
   licenseInput.id = 'license';
@@ -210,11 +241,13 @@ export default function decorate(block) {
   const checkFormCompletion = () => {
     const isImageSelected = form.querySelector('input[name="designOption"]:checked') !== null;
     const isOfficeSelected = select.value !== '';
-    previewButton.disabled = !(isImageSelected && isOfficeSelected);
+    let isLicense = ((agentNumber !== null ? true : licenseInput.value !== '' ));
+    previewButton.disabled = !(isImageSelected && isOfficeSelected && isLicense);
   };
 
   form.querySelectorAll('input[name="designOption"]').forEach((radio) => radio.addEventListener('change', checkFormCompletion));
   select.addEventListener('change', checkFormCompletion);
+  licenseInput.addEventListener('change', checkFormCompletion);
 
   // Show Step 2 with preview on previewButton click
   previewButton.addEventListener('click', () => {
@@ -224,13 +257,18 @@ export default function decorate(block) {
     const selectedOffice = select.value;
     const imageURL = 'https://s7d1.scene7.com/is/image/ADBDEMO/mailing-standard?';
     const pictureURL = `$picture=${selectedOption.value}&`;
-    let agentName = '$agentBlock=Sharon Sullivan ';
+    let agentName = '$agentBlock=';
     const companyName = companyInput.value;
     let address = '';
     const phoneNumber = phoneInput.value;
     const licenseNumber = licenseInput.value;
     let titleText = titleInput.value;
     const designationText = designationInput.value;
+
+    if (agentNumber !== null)
+        agentName = '$agentBlock=William Frank';
+      else
+        agentName = '$agentBlock=David Mordis';
 
     if (companyName !== '') agentName = `${agentName} ${companyName}`;
 
@@ -247,10 +285,10 @@ export default function decorate(block) {
 
     switch (selectedOffice) {
       case '1':
-        address = `${newLine}541 S York Street${newLine}Elmhurst, IL 60126`;
+        address = `${newLine}4950 W Craig Rd Ste B5${newLine}Las Vegas, NV 89130`;
         break;
       case '2':
-        address = `${newLine}447 North York Street${newLine}Elmhurst, IL 60126`;
+        address = `${newLine}5777 W Century Blvd Suite 665${newLine}Los Angeles, CA 90045`;
         break;
       default:
         address = '';
