@@ -83,14 +83,9 @@ export default function decorate(block) {
 
   const option1 = document.createElement('option');
   option1.value = '1';
-  option1.textContent = '2807 N Broadway, Los Angeles';
+  option1.textContent = '424 Hadley Drive, Manhattan Beach';
   option1.selected = true;
   select.append(option1);
-
-  const option2 = document.createElement('option');
-  option2.value = '2';
-  option2.textContent = '5513 S Eastern Ave, Las Vegas';
-  select.append(option2);
 
   dropdownLabel.append(select);
   formControlsDiv.append(dropdownLabel);
@@ -188,7 +183,7 @@ export default function decorate(block) {
 
     switch (selectedOffice) {
       case '1':
-        address += '2807 N Broadway' + newLine + 'Los Angeles, CA 90031';
+        address += '424 Hadley Drive' + newLine + 'Suite F' + newLine + 'Manhattan Beach, CA' + newLine + '90266-16717';
         break;
       case '2':
         address += '5513 S Eastern Ave' + newLine + 'Las Vegas, NV 89119';
