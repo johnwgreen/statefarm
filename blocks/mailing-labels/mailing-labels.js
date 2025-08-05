@@ -1,9 +1,6 @@
 export default function decorate(block) {
-  
-  // Example URL: https://example.com?name=John&age=30
-
   const urlParams = new URLSearchParams(window.location.search);
-  const agentNumber = urlParams.get('agent'); // "John"
+  const agentNumber = urlParams.get('agent');
 
   block.innerHTML = ''; // Clears the existing content of the block
 
@@ -78,8 +75,7 @@ export default function decorate(block) {
       'https://s7d1.scene7.com/is/image/ADBDEMO/blank1?$Responsive$',
       'ADBDEMO/blank1',
     ));
-  }
-  else {
+  } else {
     radioButtonsContainer.append(createPersonCard(
       'David Mordis',
       'https://s7d1.scene7.com/is/image/ADBDEMO/David Mordis?$Responsive$',
@@ -116,7 +112,7 @@ export default function decorate(block) {
   select.id = 'office-select';
   select.required = true;
 
-  if (agentNumber !== null ) {
+  if (agentNumber !== null) {
     const option1 = document.createElement('option');
     option1.value = '1';
     option1.textContent = '4950 W Craig Rd Ste B5, Las Vegas';
@@ -241,7 +237,7 @@ export default function decorate(block) {
   const checkFormCompletion = () => {
     const isImageSelected = form.querySelector('input[name="designOption"]:checked') !== null;
     const isOfficeSelected = select.value !== '';
-    let isLicense = ((agentNumber !== null ? true : licenseInput.value !== '' ));
+    const isLicense = ((agentNumber !== null ? true : licenseInput.value !== ''));
     previewButton.disabled = !(isImageSelected && isOfficeSelected && isLicense);
   };
 
@@ -265,10 +261,8 @@ export default function decorate(block) {
     let titleText = titleInput.value;
     const designationText = designationInput.value;
 
-    if (agentNumber !== null)
-        agentName = '$agentBlock=William Frank';
-      else
-        agentName = '$agentBlock=David Mordis';
+    if (agentNumber !== null) agentName = '$agentBlock=William Frank';
+    else agentName = '$agentBlock=David Mordis';
 
     if (companyName !== '') agentName = `${agentName} ${companyName}`;
 
