@@ -1,13 +1,13 @@
 /* stylelint-disable */
 .business-card {
-  margin: 3rem 0;
+  margin: 2rem 0;
 }
 /* --- NEW STYLES FOR IMAGE SELECTION --- */
 
 .my-custom-form {
   display: flex;
   flex-direction: column; /* Stack form sections */
-  gap: 20px; /* Space between sections */
+  gap: 3rem; /* Space between sections */
   padding: 20px; /* Some padding around the form */
 }
 .radio-buttons-container {
@@ -114,6 +114,15 @@
   gap: 1rem;
 }
 
+.form-controls label input:not([type="checkbox"]) {
+  min-width: 350px;
+}
+
+.form-controls label input[type="checkbox"] {
+  width: 20px;
+  height: 20px;;
+}
+
 .form-controls select {
   padding: 8px 12px;
   border: 1px solid #ccc;
@@ -138,6 +147,8 @@
   display: flex; /* Use flex to center text vertically if padding is tricky */
   align-items: center;
   justify-content: center;
+  width: fit-content;
+  min-width: 250px;
 }
 
 .preview-button:hover {
@@ -174,6 +185,10 @@
 
   .form-controls label {
     flex-direction: column;
+  }
+
+  .form-controls label input {
+    min-width: 100%;
   }
 
   .form-controls select {
