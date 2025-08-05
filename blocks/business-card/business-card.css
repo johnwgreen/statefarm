@@ -115,7 +115,7 @@
 }
 
 .form-controls label input:not([type="checkbox"]) {
-  min-width: 350px;
+  min-width: 500px;
 }
 
 .form-controls label input[type="checkbox"] {
@@ -130,7 +130,7 @@
   font-size: 1em;
   height: 38px; /* Match button height for better alignment */
   box-sizing: border-box; 
-  min-width: 350px;
+  min-width: 500px;
 }
 
 .preview-button {
@@ -149,6 +149,7 @@
   justify-content: center;
   width: fit-content;
   min-width: 250px;
+  margin: 0;
 }
 
 .preview-button:hover {
@@ -170,6 +171,20 @@
   border: 1px solid #ccc;
   border-radius: 8px;
   padding: 0 2rem;
+}
+
+.step {
+  display: none;
+}
+
+.step.active-step {
+  display: block;
+}
+
+.business-card-builder {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 /* Responsive adjustments for smaller screens */
