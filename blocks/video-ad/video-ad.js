@@ -163,9 +163,7 @@ export default function decorate(block) {
     previewButton.disabled = !(imageSelected && officeSelected);
   };
 
-  form.querySelectorAll('input[name="designOption"]').forEach(radio => {
-    radio.addEventListener('change', checkFormCompletion);
-  });
+  form.querySelectorAll('input[name="designOption"]').forEach((radio) => radio.addEventListener('change', checkFormCompletion));
   select.addEventListener('change', checkFormCompletion);
 
   // Preview button click — generate preview and show step 2
