@@ -1,13 +1,13 @@
 /* stylelint-disable */
-.business-card {
-  margin: 3rem 0;
+.video-ad {
+  margin: 2rem 0;
 }
 /* --- NEW STYLES FOR IMAGE SELECTION --- */
 
 .my-custom-form {
   display: flex;
   flex-direction: column; /* Stack form sections */
-  gap: 20px; /* Space between sections */
+  gap: 3rem; /* Space between sections */
   padding: 20px; /* Some padding around the form */
 }
 .radio-buttons-container {
@@ -114,6 +114,15 @@
   gap: 1rem;
 }
 
+.form-controls label input:not([type="checkbox"]) {
+  min-width: 500px;
+}
+
+.form-controls label input[type="checkbox"] {
+  width: 20px;
+  height: 20px;;
+}
+
 .form-controls select {
   padding: 8px 12px;
   border: 1px solid #ccc;
@@ -121,7 +130,7 @@
   font-size: 1em;
   height: 38px; /* Match button height for better alignment */
   box-sizing: border-box; 
-  min-width: 350px;
+  min-width: 500px;
 }
 
 .preview-button {
@@ -138,6 +147,9 @@
   display: flex; /* Use flex to center text vertically if padding is tricky */
   align-items: center;
   justify-content: center;
+  width: fit-content;
+  min-width: 250px;
+  margin: 0;
 }
 
 .preview-button:hover {
@@ -147,7 +159,6 @@
 
 /* Ensure the review image doesn't get messed up by new styles */
 #review {
-  margin-top: 30px; /* Add some space above the preview card */
   display: flex;
   justify-content: center; /* Center the preview image */
   min-height: 130px;
@@ -156,9 +167,30 @@
 #review img {
   width: 650px;
   height: auto;
-  border: 1px solid #ccc;
   border-radius: 8px;
   padding: 0 2rem;
+}
+
+.step {
+  display: none;
+}
+
+.step.active-step {
+  display: block;
+}
+
+.business-card-builder {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.step-1 .form-controls .preview-button {
+  margin-top: 1.5rem;
+}
+
+.step-2 .form-controls label {
+  margin: 1.5rem 0;
 }
 
 /* Responsive adjustments for smaller screens */
@@ -174,6 +206,10 @@
 
   .form-controls label {
     flex-direction: column;
+  }
+
+  .form-controls label input {
+    min-width: 100%;
   }
 
   .form-controls select {

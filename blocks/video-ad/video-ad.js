@@ -1,20 +1,23 @@
 export default function decorate(block) {
   block.innerHTML = ''; // Clears the existing content of the block
 
-  // Create the main container div
-  const mainDiv = document.createElement('div');
-  block.append(mainDiv);
+  // Main container for steps
+  const container = document.createElement('div');
+  container.className = 'business-card-builder';
+  block.append(container);
 
-  // ---
-  // Create the form element
+  // --- Step 1: Form ---
+  const step1 = document.createElement('div');
+  step1.className = 'step step-1 active-step';
+
   const form = document.createElement('form');
   form.className = 'my-custom-form';
 
-  // Add radio buttons with images
+  // Radio buttons container
   const radioButtonsContainer = document.createElement('div');
   radioButtonsContainer.className = 'radio-buttons-container';
 
-  // Helper function to create a person's selection card
+  // Helper function to create agent selection card
   const createPersonCard = (name, imageUrl, value) => {
     const cardDiv = document.createElement('div');
     cardDiv.className = 'person-selection-card';
@@ -37,19 +40,17 @@ export default function decorate(block) {
     input.value = value;
     label.append(input);
 
-    // Add click handler to the card to select the radio button
+    // Select radio on card click
     cardDiv.addEventListener('click', () => {
       input.checked = true;
-      // Trigger change event to update form completion status
-      const event = new Event('change');
-      input.dispatchEvent(event);
+      input.dispatchEvent(new Event('change'));
     });
 
     cardDiv.append(label);
     return cardDiv;
   };
 
-  // Populate using the helper function
+  // Add agent cards
   radioButtonsContainer.append(createPersonCard(
     'Susan Johnson',
     'https://s7d1.scene7.com/is/image/ADBDEMO/agent_picture?$Responsive$',
@@ -65,14 +66,14 @@ export default function decorate(block) {
     'https://s7d1.scene7.com/is/image/ADBDEMO/agent_picture-1?$Responsive$',
     'ADBDEMO/agent_picture-1',
   ));
-  
+
   form.append(radioButtonsContainer);
 
-  // ---
-  // Add a dropdown (select element)
+  // Form controls container
   const formControlsDiv = document.createElement('div');
   formControlsDiv.className = 'form-controls';
 
+  // Office dropdown
   const dropdownLabel = document.createElement('label');
   dropdownLabel.textContent = 'Select an Office:';
   const select = document.createElement('select');
@@ -80,14 +81,12 @@ export default function decorate(block) {
   select.id = 'office-select';
   select.required = true;
 
-  // First office option (selected by default)
   const option1 = document.createElement('option');
   option1.value = '1';
   option1.textContent = '2807 N Broadway, Los Angeles';
-  option1.selected = true; // Set as selected by default
+  option1.selected = true;
   select.append(option1);
 
-  // Second office option
   const option2 = document.createElement('option');
   option2.value = '2';
   option2.textContent = '5513 S Eastern Ave, Las Vegas';
@@ -96,98 +95,98 @@ export default function decorate(block) {
   dropdownLabel.append(select);
   formControlsDiv.append(dropdownLabel);
 
-  //  ---
-  // Add phone number
+  // Phone input
   const phoneLabel = document.createElement('label');
-  phoneLabel.setAttribute('for', 'dynamicInput'); // Associate label with input
-  phoneLabel.textContent = 'Phone: '; // Set label text
+  phoneLabel.textContent = 'Phone: ';
   const phoneInput = document.createElement('input');
-  phoneInput.type = 'text'; // Set the type to 'text'
-  phoneInput.id = 'phone'; // Optional: Set an ID
-  phoneInput.placeholder = ''; // Optional: Add a placeholder
-
+  phoneInput.type = 'text';
+  phoneInput.id = 'phone';
   phoneLabel.append(phoneInput);
   formControlsDiv.append(phoneLabel);
 
-  // ---
-  // add the tag line
-  const tagLine = 'State Farm Mutual Automobile Insurance Company | State Farm Indemnity Company | State Farm Fire and Casualty Company | Bloomington, IL State Farm County Mutual Insurance Company of Texas | Richardson, TX';
-
-  // ---
-  // Add the 'Preview' button
+  // Preview button (Step 1 -> Step 2)
   const previewButton = document.createElement('button');
-  previewButton.type = 'submit';
+  previewButton.type = 'button';
   previewButton.textContent = 'Preview';
   previewButton.className = 'preview-button';
-  previewButton.disabled = true; // Disabled by default (until image is selected)
+  previewButton.disabled = true; // Disabled until required inputs filled
   formControlsDiv.append(previewButton);
 
   form.append(formControlsDiv);
+  step1.append(form);
+  container.append(step1);
 
-  // Append the form to the block
-  block.append(form);
+  // --- Step 2: Preview + approval ---
+  const step2 = document.createElement('div');
+  step2.className = 'step step-2';
 
-  // --
-  // Add a preview area
+  // Preview container
   const previewContainer = document.createElement('div');
   previewContainer.id = 'review';
-  block.append(previewContainer);
+  step2.append(previewContainer);
 
-  // Function to check if form is complete
-  const checkFormCompletion = () => {
-    const isImageSelected = form.querySelector('input[name="designOption"]:checked') !== null;
-    const isOfficeSelected = select.value !== '';
-    previewButton.disabled = !(isImageSelected && isOfficeSelected);
-  };
-
-   // Create checkbox
-  const termsLabel = document.createElement('label');
-  termsLabel.setAttribute('for', 'checkbox'); // Associate label with input
+  // Approval checkbox + add button container
   const approveDiv = document.createElement('div');
   approveDiv.className = 'form-controls';
-  termsLabel.textContent = 'By clicking this checkbox, you approve the order as you have entered.   Press the Add to cart button to finish the process.';
+
+  const termsLabel = document.createElement('label');
+  termsLabel.setAttribute('for', 'acceptCheckbox');
+  termsLabel.textContent = 'By clicking this checkbox, you approve the order as you have entered.';
+
   const approveCheckbox = document.createElement('input');
   approveCheckbox.type = 'checkbox';
   approveCheckbox.id = 'acceptCheckbox';
-  
-  // Create button
-  const addButton = document.createElement('button');
-  addButton.textContent = 'Add to cart';
-  addButton.style.display = 'none'; // Initially hidden
-  addButton.className = 'preview-button';
-  approveCheckbox.addEventListener('change', () => {
-      addButton.style.display = approveCheckbox.checked ? 'block' : 'none';
-    });
-  termsLabel.appendChild(approveCheckbox);
-  approveDiv.appendChild(termsLabel);
-  approveDiv.appendChild(addButton);
-  block.append(approveDiv);
 
-  // Add event listeners for form changes
-  form.querySelectorAll('input[name="designOption"]').forEach((radio) => {
+  termsLabel.prepend(approveCheckbox);
+  approveDiv.appendChild(termsLabel);
+
+  const addButton = document.createElement('button');
+  addButton.type = 'button';
+  addButton.textContent = 'Add to cart';
+  addButton.className = 'preview-button';
+  addButton.disabled = true;
+  approveDiv.appendChild(addButton);
+
+  step2.append(approveDiv);
+
+  // Back button to return to Step 1
+  const backButton = document.createElement('button');
+  backButton.type = 'button';
+  backButton.textContent = 'Back';
+  backButton.className = 'preview-button';
+  backButton.style.marginTop = '1rem';
+  step2.append(backButton);
+
+  container.append(step2);
+
+  // --- Event Listeners ---
+
+  // Enable preview button only if image & office selected
+  const checkFormCompletion = () => {
+    const imageSelected = form.querySelector('input[name="designOption"]:checked') !== null;
+    const officeSelected = select.value !== '';
+    previewButton.disabled = !(imageSelected && officeSelected);
+  };
+
+  form.querySelectorAll('input[name="designOption"]').forEach(radio => {
     radio.addEventListener('change', checkFormCompletion);
   });
-
   select.addEventListener('change', checkFormCompletion);
 
-  // Add event listener for form submission
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
+  // Preview button click — generate preview and show step 2
+  previewButton.addEventListener('click', () => {
     const selectedOption = form.querySelector('input[name="designOption"]:checked');
-    const selectedOffice = form.querySelector('#office-select');
-    const imageURL = 'https://s7d1.scene7.com/is/image/ADBDEMO/video-background?';
-    let pictureURL = '';
+    const selectedOffice = select.value;
+    const phoneNumber = phoneInput.value.trim();
 
-    if (selectedOption) {
-      pictureURL = `$picture=${selectedOption.value}&`;
-    }
+    const imageURL = 'https://s7d1.scene7.com/is/image/ADBDEMO/video-background?';
+    const pictureURL = selectedOption ? `$picture=${selectedOption.value}&` : '';
     const newLine = '%5Cline%20';
+
     let agentName = '$name=Susan Johnson&';
     let address = '$address=';
-    let phoneNumber = phoneInput.value;
-    
 
-    switch (selectedOffice.value) {
+    switch (selectedOffice) {
       case '1':
         address += '2807 N Broadway' + newLine + 'Los Angeles, CA 90031';
         break;
@@ -195,16 +194,62 @@ export default function decorate(block) {
         address += '5513 S Eastern Ave' + newLine + 'Las Vegas, NV 89119';
         break;
       default:
-        adress = "default";
+        address += '';
     }
 
- if (phoneNumber !== ''){
-        address += newLine + phoneNumber + newLine;
+    if (phoneNumber !== '') {
+      address += newLine + phoneNumber + newLine;
     } else {
       address += newLine + newLine;
     }
+
     const finalURL = `${imageURL}${pictureURL}${agentName}${address}`;
     previewContainer.innerHTML = `<img src="${finalURL}">`;
     previewContainer.style.display = 'block';
+
+    // Switch steps
+    step1.classList.remove('active-step');
+    step2.classList.add('active-step');
+
+    // Reset approval checkbox and hide add button
+    approveCheckbox.checked = false;
   });
+
+  // Back button click — go back to form step
+  backButton.addEventListener('click', () => {
+    step2.classList.remove('active-step');
+    step1.classList.add('active-step');
+  });
+
+  // Show/hide add button based on checkbox state
+  approveCheckbox.addEventListener('change', () => {
+    addButton.disabled = !addButton.disabled;
+  });
+
+  // Add to cart button click - simulate adding process
+  addButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    
+    // Save original button text
+    const originalText = addButton.textContent;
+    
+    // First show loading state
+    addButton.textContent = 'Adding...';
+    addButton.disabled = true;  // Optional: disable button during process
+    
+    // Simulate loading delay (replace this with your actual async operation)
+    setTimeout(() => {
+      // After loading completes, show success state
+      addButton.disabled = false;
+      addButton.textContent = 'Added ✓';
+
+      // Optional: revert back to original state after some time
+      setTimeout(() => {
+        addButton.textContent = originalText;
+      }, 1500); // Revert after 1.5 seconds
+    }, 1000); // Simulate 1 second loading time
+  });
+
+  // Initial check to enable/disable preview button
+  checkFormCompletion();
 }
