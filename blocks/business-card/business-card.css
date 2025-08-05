@@ -159,7 +159,6 @@
 
 /* Ensure the review image doesn't get messed up by new styles */
 #review {
-  margin-top: 30px; /* Add some space above the preview card */
   display: flex;
   justify-content: center; /* Center the preview image */
   min-height: 130px;
@@ -185,6 +184,10 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
+}
+
+.step-2 .form-controls label {
+  margin: 1.5rem 0;
 }
 
 /* Responsive adjustments for smaller screens */
