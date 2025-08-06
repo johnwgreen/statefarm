@@ -198,7 +198,7 @@ export default function decorate(block) {
   messageLabel.append(messageSelect);
   formControlsDiv.append(messageLabel);
 
-// Image
+  // Image
   const imageLabel = document.createElement('label');
   imageLabel.textContent = 'Select an Image:';
   const imageSelect = document.createElement('select');
@@ -370,7 +370,7 @@ export default function decorate(block) {
         imageOutput = 'ADBDEMO/blank%20labels';
         break;
       case '2':
-        imageOutput = `ADBDEMO/national%20parks`;
+        imageOutput = 'ADBDEMO/national%20parks';
         break;
       default:
         imageOutput = '';
