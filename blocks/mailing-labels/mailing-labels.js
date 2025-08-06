@@ -173,6 +173,14 @@ export default function decorate(block) {
   licenseLabel.append(licenseInput);
   formControlsDiv.append(licenseLabel);
 
+  // License number input
+  const uploadLabel = document.createElement('label');
+  uploadLabel.textContent = 'Upload';
+  const uploadInput = document.createElement('input');
+  uploadInput.type = 'file';
+  uploadLabel.append(uploadInput);
+  formControlsDiv.append(uploadLabel);
+
   // Preview button (Next)
   const previewButton = document.createElement('button');
   previewButton.type = 'button';
