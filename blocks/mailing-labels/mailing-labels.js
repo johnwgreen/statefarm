@@ -198,6 +198,25 @@ export default function decorate(block) {
   messageLabel.append(messageSelect);
   formControlsDiv.append(messageLabel);
 
+// Image
+  const imageLabel = document.createElement('label');
+  imageLabel.textContent = 'Select an Image:';
+  const imageSelect = document.createElement('select');
+  imageSelect.name = 'image';
+  imageSelect.id = 'image-select';
+  const imageOption1 = document.createElement('option');
+  imageOption1.value = '1';
+  imageOption1.textContent = 'No Image';
+  imageOption1.selected = true;
+  imageSelect.append(imageOption1);
+
+  const imageOption2 = document.createElement('option');
+  imageOption2.value = '2';
+  imageOption2.textContent = 'Naional Parks';
+  imageSelect.append(imageOption2);
+  imageLabel.append(imageSelect);
+  formControlsDiv.append(imageLabel);
+
   // upload Button
   const uploadLabel = document.createElement('label');
   uploadLabel.textContent = 'Upload';
@@ -344,7 +363,21 @@ export default function decorate(block) {
     }
     messageOutput = `&$message=${messageOutput}`;
 
-    previewContainer.innerHTML = `<img src="${imageURL}${pictureURL}${agentName}${messageOutput}">`;
+    let imageOutput = '';
+    // get select
+    switch (imageSelect.value) {
+      case '1':
+        imageOutput = 'ADBDEMO/blank%20labels';
+        break;
+      case '2':
+        imageOutput = `ADBDEMO/national%20parks`;
+        break;
+      default:
+        imageOutput = '';
+        break;
+    }
+    imageOutput = `&$labelImage=${imageOutput}`;
+    previewContainer.innerHTML = `<img src="${imageURL}${pictureURL}${agentName}${messageOutput}${imageOutput}">`;
 
     // Switch steps visibility
     step1.classList.remove('active-step');
