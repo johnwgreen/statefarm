@@ -194,7 +194,7 @@ export default function decorate(block) {
   messageOption3.value = '3';
   messageOption3.textContent = 'Additional Message';
   messageSelect.append(messageOption3);
-  
+
   messageLabel.append(messageSelect);
   formControlsDiv.append(messageLabel);
 
@@ -329,22 +329,21 @@ export default function decorate(block) {
 
     // get select
     switch (selectedMessage) {
-      case '1' : 
+      case '1':
         messageOutput = '';
         break;
-      case '2' : 
+      case '2':
         messageOutput = `Just taking a moment${newLine}to let you know how${newLine}much I appreciate${newLine}your business`;
         break;
-      case '3' : 
+      case '3':
         messageOutput = 'This is an additional message that could be selected';
         break;
-      default :
+      default:
         messageOutput = '';
-      break;
+        break;
     }
-    messageOutput = `&$message=${messageOutput}`; 
-console.log(messageOutput);
-console.log(agentName);
+    messageOutput = `&$message=${messageOutput}`;
+
     previewContainer.innerHTML = `<img src="${imageURL}${pictureURL}${agentName}${messageOutput}">`;
 
     // Switch steps visibility
