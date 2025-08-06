@@ -133,6 +133,11 @@
   min-width: 500px;
 }
 
+.file-upload-button {
+  background-color: #d42027; /* State Farm Red */
+  color: #fff;
+}
+
 .preview-button {
   background-color: #d42027; /* State Farm Red */
   color: #fff;

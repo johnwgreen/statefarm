@@ -173,7 +173,32 @@ export default function decorate(block) {
   licenseLabel.append(licenseInput);
   formControlsDiv.append(licenseLabel);
 
-  // License number input
+  // Message
+  const messageLabel = document.createElement('label');
+  messageLabel.textContent = 'Select a Message:';
+  const messageSelect = document.createElement('select');
+  messageSelect.name = 'message';
+  messageSelect.id = 'message-select';
+  const messageOption1 = document.createElement('option');
+  messageOption1.value = '1';
+  messageOption1.textContent = 'No Message';
+  messageOption1.selected = true;
+  messageSelect.append(messageOption1);
+
+  const messageOption2 = document.createElement('option');
+  messageOption2.value = '2';
+  messageOption2.textContent = 'Just taking a moment';
+  messageSelect.append(messageOption2);
+
+  const messageOption3 = document.createElement('option');
+  messageOption3.value = '3';
+  messageOption3.textContent = 'Additional Message';
+  messageSelect.append(messageOption3);
+  
+  messageLabel.append(messageSelect);
+  formControlsDiv.append(messageLabel);
+
+  // upload Button
   const uploadLabel = document.createElement('label');
   uploadLabel.textContent = 'Upload';
   const uploadInput = document.createElement('input');
@@ -268,6 +293,8 @@ export default function decorate(block) {
     const licenseNumber = licenseInput.value;
     let titleText = titleInput.value;
     const designationText = designationInput.value;
+    const selectedMessage = messageSelect.value;
+    let messageOutput = '';
 
     if (agentNumber !== null) agentName = '$agentBlock=William Frank';
     else agentName = '$agentBlock=David Mordis';
@@ -300,7 +327,25 @@ export default function decorate(block) {
     if (phoneNumber !== '') agentName = `${agentName}${newLine}${phoneNumber}`;
     if (licenseNumber !== '') agentName = `${agentName}${newLine}License %23${licenseNumber}`;
 
-    previewContainer.innerHTML = `<img src="${imageURL}${pictureURL}${agentName}">`;
+    // get select
+    switch (selectedMessage) {
+      case '1' : 
+        messageOutput = '';
+        break;
+      case '2' : 
+        messageOutput = `Just taking a moment${newLine}to let you know how${newLine}much I appreciate${newLine}your business`;
+        break;
+      case '3' : 
+        messageOutput = 'This is an additional message that could be selected';
+        break;
+      default :
+        messageOutput = '';
+      break;
+    }
+    messageOutput = `&$message=${messageOutput}`; 
+console.log(messageOutput);
+console.log(agentName);
+    previewContainer.innerHTML = `<img src="${imageURL}${pictureURL}${agentName}${messageOutput}">`;
 
     // Switch steps visibility
     step1.classList.remove('active-step');
